@@ -1,0 +1,44 @@
+# The Seven Eternal Landmarks of OpenMasonry.
+#
+# Pinned by SHA-256 in the genesis entry. No ballot can amend this file: the
+# verifier rejects any amendment that targets it, and reports a tree whose
+# bytes differ from the genesis pin as unratified. Changing it means founding
+# a different fraternity (a fork), in public.
+
+[[landmark]]
+n = "I"
+name = "The Open Door"
+text = "No one is refused or ranked for sex, gender, origin, color, belief or unbelief, class or disability. The only conditions of admission the fraternity sets are adulthood, sponsorship, the signed Declaration, and the ballot."
+
+[[landmark]]
+n = "II"
+name = "Light, not Secrecy"
+text = "All rules, records, ballots after they close, decisions and finances are public, and so is the teaching of every degree. The only secrets permitted are personal privacy, private keys, a ballot while it is open, and a flaw not yet repaired. Rooms of study may be closed but never secret: their existence, rules and roll are public, their door opens by rule and never by favor, nothing said in them has force, and no one is bound to silence about them except to protect a person's privacy. There are no hidden ranks, no hidden members and no hidden bodies."
+
+[[landmark]]
+n = "III"
+name = "Nothing for Sale"
+text = "There is no token, coin, share or fee that buys membership, degree, vote, office or access. Status is never bought. After the founding it is earned by work and conferred by peers or by lot."
+
+[[landmark]]
+n = "IV"
+name = "One Member, One Vote"
+text = "Every active member eligible for a ballot has exactly one vote. Degrees grant duties and eligibility, never weight."
+
+[[landmark]]
+n = "V"
+name = "No Permanent Power"
+text = "Every office has a term. The Supreme Council is filled by verifiable lot and no one sits twice. A member who stops taking part stops being counted, and keeps the vote."
+
+[[landmark]]
+n = "VI"
+name = "Verifiable Law"
+text = "Every rule that binds members is published as text, and as code wherever the ledger enforces it; anyone can replay the full history from genesis and obtain the same state. No record is ever rewritten or erased: a wrong is repaired only by a new public record, and a repair made by an office may undo, freeze or pause but never grant."
+
+[[landmark]]
+n = "VII"
+name = "Exit and Fork"
+text = "Any member may leave at any time and keep their personal records; anyone may fork the code and the ledger. Legitimacy is not owned. It is earned in public."
+
+[declaration]
+text = "I come freely. I will seek light and share it. I will judge acts, not persons, and myself first. I will keep the secrets of others' privacy and no secret of power. I accept the Landmarks, and I may leave at any time."

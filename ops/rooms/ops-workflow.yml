@@ -1,0 +1,172 @@
+# The room sync: a TEMPLATE for the private `ops` repository of the organization openmasonry-org.
+#
+# It is NOT a workflow of this repository (the workflows of the canonical repository are a closed set, pinned
+# by @protocol). It is kept here so that anyone can read exactly what runs: copy it, byte for byte apart from
+# the pin below, to `.github/workflows/rooms.yml` of `openmasonry-org/ops`. Setup: ops/rooms/README.md.
+#
+# Every hour (and on demand) it mints a short-lived installation token of the room-sync GitHub App
+# (Organization → Members: read and write, and Administration: read to list the installed Apps; nothing else),
+# checks out `main` of the canonical repository read-only, runs `ops/rooms/sync.py` from that checkout against
+# the canonical ledger, and commits the state directory (anti-rollback mark, invitation history, action log,
+# actual access, run log) back to `ops`, at the tip of its branch. When the repository variable
+# ROOMS_PUBLIC_REPO names a public repository (`owner/name`), it then publishes there the two files written
+# for the Observatory, `actual.json` and `runs.jsonl`, and nothing else, with the secret ROOMS_PUBLISH_TOKEN
+# (a fine-grained token with Contents: read and write on that repository only). `runs.jsonl` only grows: a
+# published copy that is not a prefix of the new one stops the step. It uploads nothing else: no artifact,
+# no cache.
+#
+# Scheduled runs are a dry run until the repository variable ROOMS_APPLY is "true". A run dispatched by hand
+# takes its own `apply` and `force_mass` inputs; only people with write access to `ops` (the owners) can
+# dispatch it. A run with force_mass must be recorded afterwards as a Custodian note: the run prints its text.
+#
+# A schedule stops after 60 days without activity in the repository; the hourly state commit keeps `ops`
+# active. Merges and pushes made with GITHUB_TOKEN start no other workflow, so the commit below triggers nothing.
+name: Rooms
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Perform the plan (false: dry run)"
+        type: boolean
+        default: false
+      force_mass:
+        description: "Allow more changes than the mass guard in this run (record it as a Custodian note afterwards)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write          # only to commit the state directory back to this repository
+
+concurrency:
+  group: rooms
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out ops (the state, at the tip of its branch), with plain git
+        env:
+          TOKEN: ${{ github.token }}
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+          REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          git init --quiet ops
+          cd ops
+          git remote add origin "$REPO_URL"
+          auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          git config http.extraheader "AUTHORIZATION: basic $auth"
+          git fetch --quiet --no-tags --depth 1 origin "refs/heads/${REF}"   # not the commit that queued this run
+          git checkout --quiet -B "$REF" FETCH_HEAD
+          mkdir -p state/rooms
+
+      - name: Check out the canonical repository, read-only
+        env:
+          CANONICAL: https://github.com/openmasonry/openmasonry
+          READ_TOKEN: ${{ secrets.CANONICAL_READ_TOKEN }}    # only while the canonical repository is private; then delete it
+        run: |
+          set -euo pipefail
+          git init --quiet canonical
+          cd canonical
+          git remote add origin "$CANONICAL"
+          if [ -n "${READ_TOKEN:-}" ]; then
+            auth=$(printf 'x-access-token:%s' "$READ_TOKEN" | base64 -w0)
+            git -c http.extraheader="AUTHORIZATION: basic $auth" fetch --quiet --no-tags --depth 1 origin refs/heads/main
+          else
+            git fetch --quiet --no-tags --depth 1 origin refs/heads/main
+          fi
+          git checkout --quiet --detach FETCH_HEAD
+          git log -1 --format='canonical main at %H (%cI)'
+          python3 --version
+
+      - name: Mint the installation token of the room-sync App
+        id: app
+        # Pinned by full commit SHA, never by a tag or a branch; the tag of the release is in the comment.
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.ROOMS_APP_ID }}
+          private-key: ${{ secrets.ROOMS_APP_PRIVATE_KEY }}
+          owner: openmasonry-org
+
+      - name: Sync the rooms
+        id: sync
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          OM_CUSTODIAN_ACCOUNT: ${{ vars.CUSTODIAN_ACCOUNT }}
+          EVENT: ${{ github.event_name }}
+          IN_APPLY: ${{ inputs.apply }}
+          IN_FORCE: ${{ inputs.force_mass }}
+          SCHEDULED_APPLY: ${{ vars.ROOMS_APPLY }}
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          set -uo pipefail
+          args=(--state "$GITHUB_WORKSPACE/ops/state/rooms" --ledger "$GITHUB_WORKSPACE/canonical/ledger/entries")
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            [ "$IN_APPLY" = "true" ] && args+=(--apply)
+            [ "$IN_FORCE" = "true" ] && args+=(--force-mass)
+          elif [ "$SCHEDULED_APPLY" = "true" ]; then
+            args+=(--apply)
+          fi
+          cd "$GITHUB_WORKSPACE/canonical"
+          python3 -P ops/rooms/sync.py "${args[@]}" | tee "$RUNNER_TEMP/sync.txt"
+          echo "code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the state back to ops
+        id: commit
+        if: always()
+        env:
+          NAME: ${{ vars.CUSTODIAN_ACCOUNT }}
+          EMAIL: ${{ vars.CUSTODIAN_NOREPLY_EMAIL }}     # <numeric id>+<account>@users.noreply.github.com
+        run: |
+          set -euo pipefail
+          cd ops
+          git add state/rooms
+          if git diff --cached --quiet; then echo "no change of state"; exit 0; fi
+          git -c user.name="$NAME" -c user.email="$EMAIL" commit --quiet -m "rooms: sync state $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push --quiet origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Publish actual.json and runs.jsonl for the Observatory
+        if: always() && steps.commit.outcome == 'success' && vars.ROOMS_PUBLIC_REPO != ''
+        env:
+          PUBLIC_URL: ${{ github.server_url }}/${{ vars.ROOMS_PUBLIC_REPO }}
+          PUBLISH_TOKEN: ${{ secrets.ROOMS_PUBLISH_TOKEN }}
+          NAME: ${{ vars.CUSTODIAN_ACCOUNT }}
+          EMAIL: ${{ vars.CUSTODIAN_NOREPLY_EMAIL }}
+        run: |
+          set -euo pipefail
+          if [ ! -f "$GITHUB_WORKSPACE/ops/state/rooms/runs.jsonl" ]; then echo "nothing to publish yet"; exit 0; fi
+          git init --quiet public
+          cd public
+          git remote add origin "$PUBLIC_URL"
+          auth=$(printf 'x-access-token:%s' "$PUBLISH_TOKEN" | base64 -w0)
+          git config http.extraheader "AUTHORIZATION: basic $auth"
+          if git fetch --quiet --no-tags --depth 1 origin refs/heads/main; then
+            git checkout --quiet -B main FETCH_HEAD
+          else
+            git checkout --quiet -b main                 # the first publication
+          fi
+          if [ -f runs.jsonl ]; then                     # the published log is never rewritten, only extended
+            head -c "$(stat -c %s runs.jsonl)" "$GITHUB_WORKSPACE/ops/state/rooms/runs.jsonl" | cmp -s - runs.jsonl \
+              || { echo "the published runs.jsonl is not a prefix of the new one: nothing is published"; exit 1; }
+          fi
+          cp "$GITHUB_WORKSPACE/ops/state/rooms/runs.jsonl" runs.jsonl
+          if [ -f "$GITHUB_WORKSPACE/ops/state/rooms/actual.json" ]; then
+            cp "$GITHUB_WORKSPACE/ops/state/rooms/actual.json" actual.json
+          fi
+          git add runs.jsonl
+          if [ -f actual.json ]; then git add actual.json; fi
+          if git diff --cached --quiet; then echo "nothing new to publish"; exit 0; fi
+          git -c user.name="$NAME" -c user.email="$EMAIL" commit --quiet -m "rooms: published $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push --quiet origin HEAD:main
+
+      - name: Fail the run when the sync refused or failed anything
+        if: always()
+        env:
+          CODE: ${{ steps.sync.outputs.code }}
+        run: |
+          [ "${CODE:-1}" = "0" ] || { echo "the sync exited with ${CODE:-no code}: read state/rooms/log.jsonl"; exit 1; }

@@ -1,0 +1,15 @@
+.github/workflows/judge.yml
+.github/workflows/pages.yml
+.github/workflows/tyler.yml
+src/openmasonry/__init__.py
+src/openmasonry/beacon.py
+src/openmasonry/canon.py
+src/openmasonry/crypto.py
+src/openmasonry/govern.py
+src/openmasonry/identity.py
+src/openmasonry/ledger.py
+src/openmasonry/lot.py
+src/openmasonry/network.toml
+src/openmasonry/protocol.manifest
+src/openmasonry/rooms.py
+src/openmasonry/verify.py

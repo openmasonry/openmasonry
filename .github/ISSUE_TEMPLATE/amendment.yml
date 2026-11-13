@@ -1,0 +1,16 @@
+name: Amendment proposal
+description: Propose a change to a governed path (CONSTITUTION.md, canon/degrees.toml, docs/governance/CUSTODIAN.md, docs/governance/ROOMS.md, @protocol, or a path a passed amendment made governed).
+title: "Amendment: <short title>"
+labels: [amendment]
+body:
+  - type: input
+    id: path
+    attributes: { label: Governed file, placeholder: CONSTITUTION.md }
+    validations: { required: true }
+  - type: textarea
+    id: change
+    attributes: { label: Proposed change and reasoning }
+    validations: { required: true }
+  - type: markdown
+    attributes:
+      value: "The eternal Landmarks (`canon/eternal.toml`) cannot be amended. After discussion, a Master Builder opens an `amendment` ballot pinning the SHA-256 of the final text."

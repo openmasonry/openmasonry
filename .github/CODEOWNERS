@@ -1,0 +1,42 @@
+# Who must review what. The ruleset on main requires a code-owner review (docs/operations/LAUNCH.md).
+# `@openmasonry` is a user account (the founding Master's project account), not a team. After the
+# Founder's Sunset this file is changed, by a reviewed pull request, to list the witness operators' team.
+#
+# Everything needs a code-owner review except new ledger entries (and their anchors and reasons),
+# which the judge alone admits.
+# Later lines take precedence over earlier ones.
+
+*                  @openmasonry
+
+/canon/            @openmasonry
+/CONSTITUTION.md   @openmasonry
+/src/              @openmasonry
+/bin/              @openmasonry
+/scripts/          @openmasonry
+/node/             @openmasonry
+/.github/          @openmasonry
+/skills/           @openmasonry
+/AGENTS.md         @openmasonry
+/CLAUDE.md         @openmasonry
+/llms.txt          @openmasonry
+/.claude/          @openmasonry
+/.agents/          @openmasonry
+/engines/          @openmasonry
+/docs/             @openmasonry
+/wiki/             @openmasonry
+
+# canon/history/ holds every degree table the ledger ever pinned, as byte copies named by their sha256:
+# replay reads each of them, so it has an owner (the judge also refuses any change there but an
+# addition, and `verify --tree` requires every pinned table). Archive the genesis table by an ordinary
+# reviewed PR before the genesis (docs/operations/LAUNCH.md), so the genesis PR holds entry 000000 alone.
+/canon/history/    @openmasonry
+
+# No owner: ledger PRs need no code-owner review.
+# The judge refuses any ledger PR that changes anything else, and the admit job enables auto-merge
+# once the judge passes. ledger/anchors/ holds the witness's OpenTimestamps proofs, which travel with
+# its checkpoint entries. ledger/reasons/ holds the public reasons of corrections, each named after
+# its own sha256, which travel with the correction entries that pin them (verify --tree checks them).
+# A directory pattern covers everything below it: /ledger/entries/ covers every shard (ledger/entries/NNNN/).
+/ledger/entries/
+/ledger/anchors/
+/ledger/reasons/

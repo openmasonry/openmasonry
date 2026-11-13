@@ -1,0 +1,283 @@
+# The Tyler: keeps watch over main.
+#
+# The PR gate is NOT here: it is the `judge` job of judge.yml (pull_request_target, base code,
+# PR read as data). No job in this file may be named `judge`, so the required check can only
+# be satisfied by the real judge. This file, judge.yml and pages.yml are part of the pinned core
+# (`@protocol`, the files listed in src/openmasonry/protocol.manifest): they change only by a ratified
+# amendment, and no workflow that the manifest does not list may exist under .github/workflows/ (the
+# judge refuses the tree).
+#
+#   * audit  — re-judges main itself on every push, daily and on demand, with the pinned verifier
+#              (`python3 -P -m openmasonry.verify`, the same entry point the judge runs).
+#   * alarm  — opens a capture alarm when main diverges (at once) or the online audit keeps
+#              failing (only after ALARM_AFTER consecutive failures, so a drand outage is not a capture).
+#   * tests  — the PR's own test suite (developer feedback, not the gate) and main's.
+#   * candidate — on a pull request, replays main's ledger with the PR's own protocol core and requires the
+#              same entries, head and state digest (`verify --candidate-root`). It runs the PR's code, so
+#              it lives here (event pull_request, no secrets, read-only token) and never in the judge. It is not
+#              a required check (first-time contributors' runs wait for approval); a change of the core needs a
+#              code owner, who approves it only with this check green (docs/operations/LAUNCH.md). A rule change
+#              branches on a fixed future time or entry number, so the entries already merged replay as before.
+#   * engine — the agent engine (engines/openmasonry); it cannot change the rules.
+#   * applications — daily and on demand, closes open applications (issues labeled `application` or titled
+#              `Application:`) older than 60 days, with a courteous notice of how to apply again. It reads main's
+#              ledger with the pinned core and never touches the issue of a member, of a login that holds or ever
+#              held an invitation, or of a petitioner. An application gives no right to an invitation; the close is
+#              not a moderation act (no `note`): this published rule is its record. At most 50 a run.
+#
+# The law-bearing jobs (audit, tests, candidate) and `applications` run no third-party action and fix no Python
+# version: the checkout is plain git and the verifier needs only the standard library of the runner's python3.
+# The engine job keeps setup-node: it is not part of any verdict.
+#
+# GitHub disables a scheduled workflow after 60 days without repository activity. Nothing here commits to
+# keep it alive: the Custodian or the Monitor re-enables it and runs it by `workflow_dispatch` (SPEC section 9.6).
+name: Tyler
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 0 * * *"     # daily full re-verification of main (catches anything merged around the gate), and stale applications
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      offline: ${{ steps.offline.outcome }}
+      online: ${{ steps.online.outcome }}
+    steps:
+      - name: Check out main, with plain git and no credentials
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          set -euo pipefail
+          git init --quiet .
+          git remote add origin "$REPO_URL"
+          git fetch --quiet --no-tags --depth 1 origin "$GITHUB_SHA"
+          git checkout --quiet --detach FETCH_HEAD
+          python3 --version
+
+      - name: Replay and governed files (offline; a failure here is a real divergence)
+        id: offline
+        env:
+          PYTHONPATH: src
+          OM_NO_CACHE: "1"
+        run: python3 -P -m openmasonry.verify --tree
+
+      - name: Public beacons (online; may fail during a drand or network outage)
+        id: online
+        env:
+          PYTHONPATH: src
+          OM_NO_CACHE: "1"
+        run: python3 -P -m openmasonry.verify --tree --online
+
+      - name: State of the fraternity
+        if: always()
+        env:
+          PYTHONPATH: src
+        run: |
+          { echo "## State of the fraternity"; echo '```'
+            python3 -P -m openmasonry.verify --ledger ledger/entries 2>&1 | tr -d '`' || true
+            python3 -P -m openmasonry state --ledger ledger/entries 2>&1 | tr -d '`' || true
+            echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+  alarm:
+    # Until main is protected by a ruleset that requires the judge, anything that reaches main is
+    # re-judged. An offline failure (divergence) alarms at once; an online-only failure alarms only
+    # after ALARM_AFTER consecutive failed audits. Only this job and `applications` can write issues.
+    needs: audit
+    if: always() && needs.audit.result == 'failure' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      actions: read
+    steps:
+      - name: Open a capture alarm (once)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OFFLINE: ${{ needs.audit.outputs.offline }}
+          ALARM_AFTER: "3"
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          if [ "$OFFLINE" = "failure" ]; then
+            why="the ledger or a governed file does not verify offline (divergence)"
+          else
+            # Count this failure plus the immediately preceding failed audits of main.
+            streak=1
+            for id in $(gh run list -R "$GITHUB_REPOSITORY" --workflow tyler.yml --branch main --status completed \
+                          --limit 30 --json databaseId,event --jq '.[] | select(.event != "pull_request") | .databaseId'); do
+              [ "$streak" -ge "$ALARM_AFTER" ] && break
+              c=$(gh run view "$id" -R "$GITHUB_REPOSITORY" --json jobs --jq '.jobs[] | select(.name == "audit") | .conclusion')
+              [ "$c" = "failure" ] && streak=$((streak + 1)) || break
+            done
+            if [ "$streak" -lt "$ALARM_AFTER" ]; then
+              echo "::warning::online audit failed ($streak of $ALARM_AFTER consecutive); probably a drand or network outage, no alarm yet"
+              exit 0
+            fi
+            why="the online audit (a head dated ahead of the clock, or drand beacons) failed $streak times in a row"
+          fi
+          open=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --label capture-alarm --json number --jq length 2>/dev/null || echo 0)
+          if [ "$open" = "0" ]; then
+            gh label create capture-alarm -R "$GITHUB_REPOSITORY" --color B60205 --description "main failed the Tyler judge" 2>/dev/null || true
+            gh issue create -R "$GITHUB_REPOSITORY" --label capture-alarm \
+              --title "Capture alarm: main fails the Tyler audit (${GITHUB_SHA::7})" \
+              --body "Commit ${GITHUB_SHA} on main does not pass the audit: ${why}. Check the run: ${RUN_URL}"
+          fi
+
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: src
+    steps:
+      - name: Check out the commit under test, with plain git and no credentials
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          set -euo pipefail
+          git init --quiet .
+          git remote add origin "$REPO_URL"
+          git fetch --quiet --no-tags --depth 1 origin "$GITHUB_SHA"
+          git checkout --quiet --detach FETCH_HEAD
+      - name: Protocol tests
+        run: python3 -m unittest discover -s tests -t .
+      - name: Generated catalog and arms are current
+        run: |
+          python3 -m openmasonry arms
+          python3 -m openmasonry docs
+          git diff --exit-code -- heraldry docs/degrees || {
+            echo "::error::canon changed but generated files were not regenerated (run: openmasonry arms && openmasonry docs)"; exit 1; }
+
+  candidate:
+    # the candidate core (the PR's src/openmasonry) replays the ledger of main to the same head and state
+    # digest as main's pinned core. base/ is main as it stands, pr/ is the pull request's merge commit.
+    name: candidate
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main and the pull request, with plain git and no credentials
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          for dir in base pr; do git init --quiet "$dir"; git -C "$dir" remote add origin "$REPO_URL"; done
+          git -C base fetch --quiet --no-tags --depth 1 origin "$BASE_SHA"
+          git -C base checkout --quiet --detach FETCH_HEAD
+          git -C pr fetch --quiet --no-tags --depth 1 origin "$GITHUB_SHA"
+          git -C pr checkout --quiet --detach FETCH_HEAD
+      - name: The candidate core replays main's ledger to the same head and state
+        env:
+          PYTHONPATH: base/src
+          OM_NO_CACHE: "1"
+        run: python3 -P -m openmasonry.verify --ledger base/ledger/entries --candidate-root pr
+
+  engine:
+    # The agent engine (engines/openmasonry). Not part of the judge: it cannot change the rules.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: engines/openmasonry
+    steps:
+      - name: Check out the commit under test, with plain git and no credentials
+        working-directory: .
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          set -euo pipefail
+          git init --quiet .
+          git remote add origin "$REPO_URL"
+          git fetch --quiet --no-tags --depth 1 origin "$GITHUB_SHA"
+          git checkout --quiet --detach FETCH_HEAD
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22.20.0"
+      - name: Install (lockfile, pinned npm)
+        run: npx -y npm@11.21.2 ci
+      - name: Audit (high and above fail)
+        run: npx -y npm@11.21.2 audit --audit-level=high
+      - name: Typecheck, build and tests
+        run: npm run check
+
+  applications:
+    # Closes open applications older than 60 days. An application is an issue labeled `application` or titled
+    # `Application:` (`om apply` opens it without a label). The decision is one block of Python over the issue
+    # list, with the pinned core reading main's ledger: it never selects the issue of a member (any status), of
+    # a login that holds or ever held an invitation, or of a petitioner, matched on the author and on the login
+    # the title names, case-insensitively. Before the genesis the ledger is empty, nobody can be invited, and
+    # only the age decides. A ledger that does not replay closes nothing (the job fails). At most 50 a run,
+    # oldest first.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Check out main, with plain git and no credentials
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          set -euo pipefail
+          git init --quiet .
+          git remote add origin "$REPO_URL"
+          git fetch --quiet --no-tags --depth 1 origin refs/heads/main
+          git checkout --quiet --detach FETCH_HEAD
+      - name: Close applications older than 60 days without an invitation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PYTHONPATH: src
+          OM_NO_CACHE: "1"
+          NOTICE: >-
+            This application closed after 60 days without an invitation. An application gives no right to an
+            invitation, and nobody is obliged to invite. You are welcome to apply again at any time: open a new
+            application at https://github.com/${{ github.repository }}/issues/new?template=application.yml, or
+            run `bin/om apply` in a clone of the repository. Thank you for your interest in OpenMasonry.
+        run: |
+          set -euo pipefail
+          gh issue list -R "$GITHUB_REPOSITORY" --state open --limit 1000 --search "sort:created-asc" \
+            --json number,title,author,createdAt,labels > "$RUNNER_TEMP/issues.json"
+          python3 -P -c '
+          import json, sys
+          from datetime import datetime, timedelta, timezone
+          from pathlib import Path
+          from openmasonry.ledger import fold, load, replay
+          DAYS, CAP = 60, 50
+          entries = load(Path(sys.argv[1]))
+          st = replay(entries)
+          kept = {*st.members, *st.invitations, *st.petitions}
+          for e in entries:
+              if e["type"] == "invite":
+                  kept.add(e["body"]["login"])
+              elif e["type"] == "petition":
+                  kept.add(e["actor"])
+          kept = {fold(x) for x in kept}
+          cutoff = datetime.now(timezone.utc) - timedelta(days=DAYS)
+          stale = []
+          for i in json.load(sys.stdin):
+              title = (i.get("title") or "").strip()
+              labeled = any(x.get("name") == "application" for x in i.get("labels") or [])
+              if not (labeled or title.lower().startswith("application:")):
+                  continue
+              author = (i.get("author") or {}).get("login") or ""
+              named = title.split(":", 1)[1].split() if ":" in title else []
+              named = named[0].lstrip("@") if named else ""
+              if not author or fold(author) in kept or (named and fold(named) in kept):
+                  continue
+              created = datetime.fromisoformat(i["createdAt"].replace("Z", "+00:00"))
+              if created < cutoff:
+                  stale.append((created, i["number"]))
+          for _, number in sorted(stale)[:CAP]:
+              print(number)
+          ' ledger/entries < "$RUNNER_TEMP/issues.json" > "$RUNNER_TEMP/close.txt"
+          while read -r n; do
+            gh issue close "$n" -R "$GITHUB_REPOSITORY" --reason "not planned" --comment "$NOTICE" \
+              || echo "::warning::could not close #$n"
+          done < "$RUNNER_TEMP/close.txt"
+          echo "closed $(wc -l < "$RUNNER_TEMP/close.txt" | tr -d ' ') stale applications" >> "$GITHUB_STEP_SUMMARY"

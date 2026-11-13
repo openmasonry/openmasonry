@@ -1,0 +1,73 @@
+{
+ "name": "claim_applied_before_its_notice",
+ "description": "A founder claims the Custodian office while no custodian exists, and applies the claim one second before its 30 days of notice are over.",
+ "entries": [
+  {
+   "seq": 0,
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "time": "2027-01-01T00:00:00Z",
+   "type": "genesis",
+   "actor": "hiram",
+   "body": {
+    "name": "OpenMasonry Vector Lodge",
+    "pins": {
+     "canon/degrees.toml": "cc5055199c8213648f536a6856c9d6879944c48be7151593ad279f73b84b7b32",
+     "canon/eternal.toml": "12b0c895679c6fcd65c22383e697f0665d2b34d69ab33ea702d854936723d9b9",
+     "CONSTITUTION.md": "030b5d72ed8c102041a787ca5f58734d074a43779a5ebd52a9ef56d63346db3d",
+     "@protocol": "255c8e7c0e8369918aca87f9fe4adb10c3ad94e08bd68bb538b089385a8469e0",
+     "docs/governance/CUSTODIAN.md": "920c7fdfc82469ab5e78497fa8f385732e32623583236874d41ee25be4d1da3c",
+     "docs/governance/ROOMS.md": "73261eef72828ccde07731ec48e6d6e5bd43d0d56bc56cfa3d55f4a3e42ddb4d"
+    },
+    "declaration_sha256": "41c3d420815ec46fc92dfaa7b09c0cc64475e3243802bf819ffde8d9dd4b73fb",
+    "founders": [
+     {
+      "login": "hiram",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC/XjZzcCdKOx2cqGf9mKHTdpBxYJmo7JLunbC6tPYgj",
+      "github_id": 1325811063
+     }
+    ],
+    "witnesses": [
+     {
+      "name": "tyler",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINItFUo6KrHoH1PqeHSuVS2I9nwEa6OTqynk9bZ78yYX",
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0i0VSjoqsegfU+p4dK5VLYj2fA\nRro5OrKeT1tnvzJhcAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA+5fLxK2MvlSZwuGSpDOPwaBiNR5Qioes3siiVGp40GYdUDxFENVUhW\nLY8a9rMkuRbFvb2qQqcy8hBgduTC5rAQ==\n-----END SSH SIGNATURE-----\n"
+     }
+    ],
+    "custodians": [],
+    "custodian_threshold": 0
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA56tPT5joU9G+PxcffB7F9odHW8tjPA95+h1nSHH5uc3nqO0ENNWc+M\nzBRVRsuDiEQUBRFTCeJv91kJ+gBPg8Bw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 1,
+   "prev": "f706e190f4559beeb8e240e9ed02ed6184dfbffb1dd4084b54c26f48694702fb",
+   "time": "2027-01-02T00:00:00Z",
+   "type": "custodian_claim",
+   "actor": "hiram",
+   "body": {
+    "name": "keeper",
+    "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICD4TTN0990gRQFhjdgvyNrfT3/8s9MLiyYgAbFUkvaC",
+    "revoke_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoNsUOXi27sUlMF7OYS7iYzbcuHVstqQfHSSJ8kcHEL",
+    "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgIPhNM3T33SBFAWGN2C/I2t9Pf/\nyz0wuLJiABsVSS9oIAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAXtgRa2GqCpFqG31883AvSYrVmjllP8PIkC/L4YmTuZrHYUyM5gbO67\n+/v2iDwFgbJe2aIx2BK3MgNUrOxIvkAQ==\n-----END SSH SIGNATURE-----\n",
+    "revoke_proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgOg2xQ5eLbuxSUwXs5hLuJjNty4\ndWy2pB8dJInyRwcQsAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAl2IkRRgq5WIiJgXg0RRZEky32FV+lq1X7IH6wLn9rBA3o7Hr9uoH9a\ncT4OR8Yobngb4tIPfb5xPZRun2QWB+AQ==\n-----END SSH SIGNATURE-----\n"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA+8koM/XnsebBJwiV8IKbtsMc9gR3AM5sLaTGyPXpw7nADM/c9bCgXm\nF4a7GdMapr0pME7Vyp0ErKhVNrr5e9AA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 2,
+   "prev": "959f7dadf8f64ae1dd04676ecf33c6fd2a5f6df24d8377420842877e8b83172c",
+   "time": "2027-01-31T23:59:59Z",
+   "type": "custodian_claim_apply",
+   "actor": "hiram",
+   "body": {
+    "seq": 1
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA++XOgfiyxa3yAJrmfY374C1iDCntUAIaSfvREoPy7wOfu8jn6sHEVT\n/Lv1UezJ0C1AnBiw2+u+wvaO2bVj8TDg==\n-----END SSH SIGNATURE-----\n"
+  }
+ ],
+ "expect": {
+  "valid": false,
+  "seq": 2,
+  "error": "the claim of entry 1 is under notice until 2027-02-01T00:00:00Z (30 days after it)"
+ }
+}

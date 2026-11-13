@@ -1,0 +1,40 @@
+name: Application
+description: Introduce yourself if you would like to join OpenMasonry.
+title: "Application: @<your-login>"
+labels: [application]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome. Any adult may apply, and it costs nothing (Landmark I). OpenMasonry admits by invitation: a Master Builder who is ready to answer for you invites you, and only then do you petition.
+
+        **Before you write, please read this.**
+        - **This issue is public, and so is membership.** Members are a public roll under the name OpenMasonry: your GitHub login, its numeric id and the SSH public key you sign with stay in a public ledger that is never rewritten or erased. Apply only if you accept being listed there.
+        - **Give no personal data.** No legal name, address, date of birth, phone number, e-mail, document or photograph. Nobody will ask you for any, here or elsewhere. Write only what you are glad to leave in public for good.
+        - **You must be an adult:** 18 years old, or the age of majority where you live, whichever is higher.
+        - **An application gives no right and is not a ledger entry.** Nothing here is signed, and nobody is obliged to invite you. You may close this issue at any time. An application gives no right to an invitation and may be closed automatically after 60 days without one; you may then apply again.
+
+        **What happens next.**
+        1. Members read your introduction and may talk with you here. Take part in the public work if you wish: that is how members come to know you.
+        2. A Master Builder (3° or higher) who is ready to answer for your identity, your adulthood and your good faith may **invite** you. The invitation is a signed entry in the ledger that names your GitHub login; it makes that member your first sponsor and lasts 30 days.
+        3. Once invited, make sure the key you will sign with (`ssh-ed25519`, or a hardware-backed `sk-ssh-ed25519@openssh.com` key) is listed at `https://github.com/<your-login>.keys`. In a clone of the repository, ask your agent *"I want to join"* (or type `/om`), or run `bin/om join` yourself. It shows you the Declaration and drafts your petition; you approve it with `bin/om approve <digest>` in a system dialog, which signs it with your key and opens the pull request. Without an invitation, `bin/om join` refuses and sends you back here.
+        4. A second Master Builder sponsors your petition (while fewer than 7 active Masters exist, as many sponsors as there are active Masters are needed, at most two, so the inviter alone suffices when only one exists). One of your sponsors opens the admission ballot: members commit their votes for 7 days and reveal them for 3 days. You are refused if black balls reach one fifth of the votes cast. The Tyler's `judge` check enforces every step.
+
+        Full guide: `wiki/queries/how-to-join-openmasonry.md`.
+  - type: textarea
+    id: introduction
+    attributes:
+      label: Introduce yourself, in your own words
+      description: Why do you seek the Open Craft, and what would you like to build or learn here? A few sentences are enough. Remember that this text is public.
+    validations: { required: true }
+  - type: checkboxes
+    id: understood
+    attributes:
+      label: Before you submit
+      options:
+        - label: I am an adult (18 years old, or the age of majority where I live, whichever is higher).
+          required: true
+        - label: I understand that membership is a public roll under the name OpenMasonry, and that this issue is public.
+          required: true
+        - label: I have put no personal data in this issue.
+          required: true
