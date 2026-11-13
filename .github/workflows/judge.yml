@@ -1,0 +1,194 @@
+# The Tyler's judge: guards the door of the ledger.
+#
+# Runs only on pull_request_target, so the code that judges a PR is always the BASE branch's code
+# (checked out into base/). The PR's tree is fetched into pr/ and read as data: it is never
+# imported, installed or executed. A PR can never change the code that judges it.
+#
+# The only program of this repository that the judge runs is `python3 -P -m openmasonry.verify`: the
+# pinned core (`@protocol`, the files listed in src/openmasonry/protocol.manifest). This file is on that
+# list, so after genesis it changes only by a ratified amendment. Nothing else of the repository runs
+# here. The other workflows, tyler.yml and pages.yml, are on the list too, and no workflow may exist that the
+# manifest of the tree does not list (see the gates).
+#
+#   * judge — the gate. Make it the required status check on main (docs/operations/LAUNCH.md).
+#   * admit — after the judge passes on a ledger-only PR, enables auto-merge. It checks out nothing.
+#
+# The PR's own tests run in tyler.yml (job `tests`, event pull_request); they are feedback, not the gate.
+# So does job `candidate`, which replays the ledger with the PR's own core and requires the same head and state
+# digest: it runs the PR's code, which this file never does.
+#
+# No third-party action runs here, and no Python version is fixed: the checkout is plain git, and the verifier
+# needs nothing but the standard library of the runner's python3. The judge is a convenience; the law is
+# `verify`: a merge made without it is lawful when the resulting main passes `verify --tree`
+# (docs/operations/RECOVERY.md, "Manual judging").
+name: Judge
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions: {}
+
+concurrency:
+  group: judge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  judge:
+    name: judge
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      ledger_only: ${{ steps.gates.outputs.ledger_only }}
+    steps:
+      - name: Check out the trusted verifier (base branch), with plain git and no credentials
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          git init --quiet base
+          git -C base remote add origin "$REPO_URL"
+          git -C base fetch --quiet --no-tags origin "+refs/heads/${BASE_REF}:refs/remotes/origin/${BASE_REF}"
+          git -C base checkout --quiet --detach "refs/remotes/origin/${BASE_REF}"
+          python3 --version
+
+      - name: Fetch the PR tree as data (never executed)
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          git -C base fetch --quiet --no-tags origin "pull/${PR_NUMBER}/head"
+          GIT_LFS_SKIP_SMUDGE=1 git -C base worktree add --detach ../pr "$HEAD_SHA"
+
+      - name: Gates (append-only, ledger-only, no implicit code, no shadows, no links, no new workflow)
+        id: gates
+        working-directory: base
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          range="$BASE_SHA...$HEAD_SHA"
+          fail() { echo "::error::$1"; printf '%s\n' "$2"; exit 1; }
+
+          # Past entries are immutable: only added files, never modified, renamed, type-changed or deleted.
+          bad=$(git diff --no-renames --name-status "$range" -- ledger/entries | grep -v '^A' || true)
+          [ -z "$bad" ] || fail "Ledger entries may only be added, never modified, renamed or deleted:" "$bad"
+
+          # The archive of degree tables is append-only too: replay reads every table ever pinned by its digest.
+          hist=$(git diff --no-renames --name-status "$range" -- canon/history | grep -v '^A' || true)
+          [ -z "$hist" ] || fail "Files under canon/history/ may only be added, never modified, renamed or deleted:" "$hist"
+
+          # Only entry files may be added to ledger/entries/, each in its shard: <shard>/<seq>.json, the seq in decimal
+          # zero-padded to six digits at least (000000 to 999999, then 1000000 and on, with no leading zero; 16 digits
+          # at most) and the shard seq // 1000, zero-padded to four digits at least (0000 to 9999, then 10000 and on).
+          junk=$(git diff --no-renames --name-only --diff-filter=A "$range" -- ledger/entries | awk '
+            !/^ledger\/entries\/([0-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9]+)\/([0-9][0-9][0-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9][0-9][0-9][0-9]+)\.json$/ { print; next }
+            { split($0, part, "/"); seq = substr(part[4], 1, length(part[4]) - 5)
+              shard = substr(seq, 1, length(seq) - 3); sub(/^0+/, "", shard)
+              while (length(shard) < 4) shard = "0" shard
+              if (length(seq) > 16 || shard != part[3]) print }' || true)
+          [ -z "$junk" ] || fail "Only entry files, each in the shard of its seq (ledger/entries/NNNN/NNNNNN.json), may be added to ledger/entries/:" "$junk"
+
+          # Files that Python could execute implicitly.
+          sneaky=$(git diff --no-renames --name-only --diff-filter=AMT "$range" \
+                   | grep -E '(^|/)(__pycache__/|sitecustomize\.py$|usercustomize\.py$)|\.(pyc|pyo|pth|so|dylib)$|^[^/]+\.py$' || true)
+          [ -z "$sneaky" ] || fail "Files that Python could execute implicitly are not allowed:" "$sneaky"
+
+          # Under src/ only the flat files of the package may be added or changed. A loose module or another
+          # package there (src/json.py, src/json/) would be found before the standard library, and a directory
+          # inside the package (src/openmasonry/ledger/) before the pinned module of the same name.
+          shadow=$(git diff --no-renames --name-only --diff-filter=AMT "$range" -- src \
+                   | grep -Ev '^src/openmasonry/[^/]+$' || true)
+          [ -z "$shadow" ] || fail "Under src/ only files directly in src/openmasonry/ are allowed (anything else could shadow the verifier):" "$shadow"
+
+          # Symlinks and submodules: new files with mode 120000/160000 and type changes such as
+          # "mode change 100644 => 120000". Two independent views of the same diff.
+          links=$( { git diff --no-renames --raw --no-abbrev "$range" | awk '$2 == "120000" || $2 == "160000"'
+                     git diff --no-renames --summary "$range" | grep -E ' mode 1[26]0000 |=> 1[26]0000 ' ; } || true)
+          [ -z "$links" ] || fail "Symlinks and submodules are not allowed in OpenMasonry pull requests:" "$links"
+
+          # A closed set of workflows: the pull request's tree holds nothing under .github/workflows/ (in any
+          # letter case) besides the workflow files its own manifest lists (read here as data). Another
+          # workflow could carry a job named `judge`. Whether a tree with that manifest is ratified is then
+          # decided by the @protocol digest (verify --tree, below): a manifest nobody voted on fails there.
+          # The verifier refuses the same strays (govern.stray_workflows); this is a second view.
+          listed=$(git show "$HEAD_SHA:src/openmasonry/protocol.manifest" 2>/dev/null \
+                   | grep -xE '\.github/workflows/[A-Za-z0-9._-]+' || true)
+          stray=$(git ls-tree -r --name-only "$HEAD_SHA" | grep -iE '^"?\.github/workflows(/|$)' \
+                  | grep -vxFf <(printf '%s\n' "$listed") || true)
+          [ -z "$stray" ] || fail "Only the workflows of the pinned core may exist under .github/workflows/ (a new one needs an amendment of @protocol that lists it in src/openmasonry/protocol.manifest):" "$stray"
+
+          # Ledger-only rule: a PR that adds entries changes nothing else. Allowed alongside entries:
+          # the witness's OpenTimestamps anchors (a root or its proof added, never changed; the verifier then
+          # holds each one to the checkpoint that names it, see --anchors-changed below), the public reasons of
+          # corrections (added, never changed: ledger/reasons/<sha256>.md), and an archived degree table
+          # (canon/history/<sha256>.toml, added: in the genesis PR, and in a PR whose new degree amendment
+          # ballot names it; the verifier holds each one to its name and to the table the genesis pins or that
+          # ballot names).
+          base_len=$(git ls-tree -r --name-only "$BASE_SHA" ledger/entries/ | grep -c '\.json$' || true)
+          entries=$(git diff --no-renames --name-only --diff-filter=A "$range" -- ledger/entries | grep -c . || true)
+          genesis=0
+          if [ "$base_len" = "0" ] && git diff --no-renames --name-only --diff-filter=A "$range" \
+               -- ledger/entries/0000/000000.json | grep -q .; then genesis=1; fi
+          others=$(git diff --no-renames --name-status "$range" | awk -F'\t' -v genesis="$genesis" '
+            $1 == "A" && $2 ~ /^ledger\/entries\/[0-9][0-9][0-9][0-9][0-9]*\/[0-9][0-9][0-9][0-9][0-9][0-9][0-9]*\.json$/ { next }
+            $1 == "A" && $2 ~ /^ledger\/anchors\/[0-9][0-9][0-9][0-9][0-9][0-9][0-9]*\.root(\.ots)?$/ { next }
+            $1 == "A" && length($2) == 82 && $2 ~ /^ledger\/reasons\/[0-9a-f]+\.md$/ { next }
+            $1 == "A" && length($2) == 83 && $2 ~ /^canon\/history\/[0-9a-f]+\.toml$/ { next }
+            { print }')
+          if [ "$entries" != "0" ] && [ -n "$others" ]; then
+            fail "A pull request that adds ledger entries must change nothing else (open a separate PR for these):" "$others"
+          fi
+          # What the pull request changes under ledger/anchors/, for the verifier (read as data).
+          git diff --no-renames --name-status "$range" -- ledger/anchors > "$RUNNER_TEMP/anchors-changed"
+          ledger_only=false
+          if [ "$entries" != "0" ]; then ledger_only=true; fi
+          { echo "base_len=$base_len"; echo "ledger_only=$ledger_only"; } >> "$GITHUB_OUTPUT"
+          echo "base entries: $base_len · added entries: $entries · genesis: $genesis · ledger-only: $ledger_only"
+
+      - name: Replay, identity, governed files, fresh timestamps, public beacons
+        env:
+          PYTHONPATH: base/src
+          OM_NO_CACHE: "1"
+          BASE_LEN: ${{ steps.gates.outputs.base_len }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_AUTHOR_ID: ${{ github.event.pull_request.user.id }}
+          GITHUB_TOKEN: ${{ github.token }}     # read-only; only raises the rate limit of api.github.com/users/<login>
+        run: |
+          python3 -P -m openmasonry.verify --ledger pr/ledger/entries --tree --root pr --base-root base --online \
+            --clock-since "$BASE_LEN" --pr-author "$PR_AUTHOR" --since "$BASE_LEN" --pr-author-id "$PR_AUTHOR_ID" \
+            --anchors-changed "$RUNNER_TEMP/anchors-changed"
+
+      - name: State of the fraternity
+        if: always()
+        env:
+          PYTHONPATH: base/src
+        run: |
+          # With --root pr the replay also finds the degree table a new amendment ballot of the PR names.
+          led=base/ledger/entries; root=base; [ -d pr ] && led=pr/ledger/entries && root=pr
+          { echo "## State of the fraternity"; echo '```'
+            python3 -P -m openmasonry.verify --ledger "$led" --root "$root" 2>&1 | tr -d '`' || true
+            echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+  admit:
+    # Ledger-only PRs merge themselves once the judge passes. Code, docs and governed files never do:
+    # they need a code-owner review (CODEOWNERS). Requires "Allow auto-merge" and a ruleset on main
+    # that requires the `judge` check (docs/operations/LAUNCH.md). No checkout: no PR code is touched.
+    name: admit
+    needs: judge
+    if: needs.judge.outputs.ledger_only == 'true' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge for the judged head commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --auto --merge --match-head-commit "$HEAD_SHA"

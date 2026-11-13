@@ -1,0 +1,366 @@
+{
+ "name": "amendment_removes_a_pin",
+ "description": "An amendment pins a new path; a second one removes that pin (new_sha256 of 64 zeros); a third pins a new protocol core, and the protocol epoch becomes 1.",
+ "entries": [
+  {
+   "seq": 0,
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "time": "2027-01-01T00:00:00Z",
+   "type": "genesis",
+   "actor": "hiram",
+   "body": {
+    "name": "OpenMasonry Vector Lodge",
+    "pins": {
+     "canon/degrees.toml": "cc5055199c8213648f536a6856c9d6879944c48be7151593ad279f73b84b7b32",
+     "canon/eternal.toml": "12b0c895679c6fcd65c22383e697f0665d2b34d69ab33ea702d854936723d9b9",
+     "CONSTITUTION.md": "030b5d72ed8c102041a787ca5f58734d074a43779a5ebd52a9ef56d63346db3d",
+     "@protocol": "255c8e7c0e8369918aca87f9fe4adb10c3ad94e08bd68bb538b089385a8469e0",
+     "docs/governance/CUSTODIAN.md": "920c7fdfc82469ab5e78497fa8f385732e32623583236874d41ee25be4d1da3c",
+     "docs/governance/ROOMS.md": "73261eef72828ccde07731ec48e6d6e5bd43d0d56bc56cfa3d55f4a3e42ddb4d"
+    },
+    "declaration_sha256": "41c3d420815ec46fc92dfaa7b09c0cc64475e3243802bf819ffde8d9dd4b73fb",
+    "founders": [
+     {
+      "login": "hiram",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC/XjZzcCdKOx2cqGf9mKHTdpBxYJmo7JLunbC6tPYgj",
+      "github_id": 1325811063
+     },
+     {
+      "login": "ada",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOvuo8V/A2QmdqyRBs6kSfahraOJgrIAEw4Z/wl0v5t8",
+      "github_id": 4260250382,
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAWZn8G54OaC8xmLcAthqRZMVkYIRZ4Gxpxidwpaf5SSQ24dTiOGhZuN\nSX+Rr8c4sh8I608r6UCUwa7bImtk7WAA==\n-----END SSH SIGNATURE-----\n"
+     },
+     {
+      "login": "carol",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEGoC1uXsCpMjVLZ4gIYzxwbO/eDQuOMd1ox/Hu/qKQD",
+      "github_id": 1277614344,
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAKBEXhWdhwXKs6+DKgPR9NYsLTGQySOZEPGfgKCDqsGuQjtOQpwe7l8\naxlcsP9fj5a42+HEiHtOFwYhnCbdkDDA==\n-----END SSH SIGNATURE-----\n"
+     }
+    ],
+    "witnesses": [
+     {
+      "name": "tyler",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINItFUo6KrHoH1PqeHSuVS2I9nwEa6OTqynk9bZ78yYX",
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0i0VSjoqsegfU+p4dK5VLYj2fA\nRro5OrKeT1tnvzJhcAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA+5fLxK2MvlSZwuGSpDOPwaBiNR5Qioes3siiVGp40GYdUDxFENVUhW\nLY8a9rMkuRbFvb2qQqcy8hBgduTC5rAQ==\n-----END SSH SIGNATURE-----\n"
+     }
+    ],
+    "custodians": [],
+    "custodian_threshold": 0
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAlAKQiIiUA6mJA1h1WYx57LFYZYTm21ZqqpwcfoU5eaTdOVbeRirj20\nBYa7h+QB6kHVmaDTSZhr9+cuhbtyb9Ag==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 1,
+   "prev": "6cadb66c108a965ab2edec0c1ab849541a8f14a24ca71778aa64357dbfb32b93",
+   "time": "2027-01-02T00:00:00Z",
+   "type": "ballot_open",
+   "actor": "ada",
+   "body": {
+    "id": "am-1",
+    "kind": "amendment",
+    "subject": {
+     "path": "docs/page.md",
+     "new_sha256": "ea8ca14bedba607ad8eb48dcf70af3506951be35bc6977ef2d8697844be606f9"
+    }
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAJiCUTnH3N4Bzg/vMUyIxG/MgMKRm5lC3JiRPvZH6AmUW5CqmNGcxtJ\nRqo4VuIEHDqUoZXcXc7WKChYBhvWAwDA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 2,
+   "prev": "68ad61d8e33ed764f4ad2c0eba32c2b7ff583d021d6815921e1bde0f79a016aa",
+   "time": "2027-01-02T00:00:00Z",
+   "type": "ballot_commit",
+   "actor": "hiram",
+   "body": {
+    "id": "am-1",
+    "commitment": "4acdf2ae2c5aec0a2a75f38dacafb54425abe6ad4587a2cfac8873383916a6a2"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAl3Ue9DFb/w+r4SDBhFMVzkO2iC9Hv0XoN++eR+gyI5gMrNjnIzEd77\n1x/Qq3elNSUF1q3Ez2n0hHG/CKz8q7CA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 3,
+   "prev": "d752a5e577bbd929e53334d04e23fa3b11084ee5e1dd53fdf51c8efe1fed21c1",
+   "time": "2027-01-02T00:00:00Z",
+   "type": "ballot_commit",
+   "actor": "ada",
+   "body": {
+    "id": "am-1",
+    "commitment": "d401e3030468d480712de26c43bf5c0fcd6ee63ab9e0a1c8f6bb60859a6ad90d"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABADViJfzgcQFgirikLjyZJRbHYToZQvLVF6Uu2OjulOJ7Tnx6WWQ2Spl\nsNJ1Mqse8117QggyLoFWt9jK+RDqr2Cw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 4,
+   "prev": "14331f566ae86190f9f1bd3c17dfd06f71eed41a270edf8c1e83eee36af8cdd9",
+   "time": "2027-01-02T00:00:00Z",
+   "type": "ballot_commit",
+   "actor": "carol",
+   "body": {
+    "id": "am-1",
+    "commitment": "343fd4d866d3e1b7b66f3666a8c9dff88152271c4cdecb7ed84faea4cea1433a"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAiYncDAUpUX3PPwt3N8p3Hw1kld8gOzC1d1ixJGVoDD8lJMKhFOwMCW\nINjd1KCeEMGHUjIWRXGZGGYqBv7S3YDQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 5,
+   "prev": "59c0792d21a6b383406cfc264c47fe31a0ed846c94f6d5c529a77d547190586b",
+   "time": "2027-01-09T06:15:01Z",
+   "type": "ballot_reveal",
+   "actor": "hiram",
+   "body": {
+    "id": "am-1",
+    "vote": "yes",
+    "salt": "4f0645761ceff50aec389142f018819b"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAOmldSYKneBHWYfeEGi+qniRpH46MF0nEA0Oz5Ht6KAGydXbIri9p1w\nczDLQOXj8dVMJLBmdvwaHpPDHvEjMwCA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 6,
+   "prev": "097a808d50af05233dfcc0639873f074ff44a2d4544928548b80990c08cd1a22",
+   "time": "2027-01-09T06:15:01Z",
+   "type": "ballot_reveal",
+   "actor": "ada",
+   "body": {
+    "id": "am-1",
+    "vote": "yes",
+    "salt": "fdee430d40bd57deeac186cd9790033d"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA0z/u5Muv5Kdc6Nv0808zgkt84PIcx2mddNAiR7CVWfDcFYUvS8DjiZ\nPwj34NPCqh2mpHx+6IbQ0kADWzh0/GDg==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 7,
+   "prev": "dbd8fcad42f2e201ddc76581a4e595c9d9c28c96fe29b646593f3dc7536546ea",
+   "time": "2027-01-09T06:15:01Z",
+   "type": "ballot_reveal",
+   "actor": "carol",
+   "body": {
+    "id": "am-1",
+    "vote": "yes",
+    "salt": "4c26d9074c27d89ede59270c0ac14b71"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAg+wMSJu9z11EnplrfMx6XeHQoCXMC6kXnur641lnHrtIjvhqaxk7pE\n8E1XZIQdBu25TKSoodB5IeNZIMvSxxDw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 8,
+   "prev": "c4e936ec85e8dafb411ab41c56860aa03a3afdfe78070bc39b77eaeab8c0f766",
+   "time": "2027-01-12T06:15:01Z",
+   "type": "ballot_close",
+   "actor": "tyler",
+   "body": {
+    "id": "am-1"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0i0VSjoqsegfU+p4dK5VLYj2fA\nRro5OrKeT1tnvzJhcAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAQqQU1f0Q0GSxny70q9AXAKw7+aGh+f/BQvbWkkHR9qZPDF66+zDJPG\noj2102P/3MFFSamkCqTIi5Ylkt7Cl9DA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 9,
+   "prev": "ea4a02f57d1eafe2f917f257aced94284e0d0cd347b72f38729c9483463a9dbc",
+   "time": "2027-01-12T07:15:01Z",
+   "type": "ballot_open",
+   "actor": "ada",
+   "body": {
+    "id": "am-2",
+    "kind": "amendment",
+    "subject": {
+     "path": "docs/page.md",
+     "new_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAAFjGjYcJsTHQtvZxebl2sPJaGvSXvFtm+/KCxrpU3LHK69c9VV5xjR\nmps99r7q3fSdbFcMK2rCFuJvo/YvaYCQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 10,
+   "prev": "210d2ede65ef47916d150cef4176fe8f60e0125be4624256209b3699c0405580",
+   "time": "2027-01-12T07:15:01Z",
+   "type": "ballot_commit",
+   "actor": "hiram",
+   "body": {
+    "id": "am-2",
+    "commitment": "21f628275c78b8f86ff862038470abb438aaeb0a59a28cd7d7960e00b7e4e25d"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAmHjA9AIlq3DIwhICg7Due2uGpCadkdFhw8b8zLfX0qSP2Zvl635RhJ\nr7nWE8cIRBKCs+HzI6lFO+wUQqZ1qnDQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 11,
+   "prev": "cc858e309ab144bb0c3c3b4ebedab2975d076cc184706f5978c11ca3c1c60e3c",
+   "time": "2027-01-12T07:15:01Z",
+   "type": "ballot_commit",
+   "actor": "ada",
+   "body": {
+    "id": "am-2",
+    "commitment": "d67764df130cefd5f523e3579fbb82072eb441f72d0977714bafc863297ffbef"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA6xtD6n2F0pNj4B3z5AHTktRqPiuN35vbR7Yi8c7cOc67jAsfQ9pJyO\ncDrSAutDaVEeSU/c6R4JyiTemP+fuPBg==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 12,
+   "prev": "606a2ea857e39fb2b4c1f894ae412d5dcfc6d01dbd885d4c14ba96900435debe",
+   "time": "2027-01-12T07:15:01Z",
+   "type": "ballot_commit",
+   "actor": "carol",
+   "body": {
+    "id": "am-2",
+    "commitment": "754c2b1cdb7632f9f7a3c1e2f1480cbd1f2495ef7ec92d4c762300fa1c4fff28"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAMUJ9vgW/Oepie/yTwuOOEaXcUa9/qZYrclMHMrunsymE1tgChE0Q2T\neQpiDj/oJZ7BAKWUgAAODtNfSwfanfCg==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 13,
+   "prev": "2428add60f28f022ca398f593bc9daa88058f46307bd3eeeb6d31700883615e5",
+   "time": "2027-01-19T13:30:02Z",
+   "type": "ballot_reveal",
+   "actor": "hiram",
+   "body": {
+    "id": "am-2",
+    "vote": "yes",
+    "salt": "4f0645761ceff50aec389142f018819b"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAR8QramO0IMMIUEg8+67igiEe2S/8GhcYLh/ou/GtiC6rJT7OJCcmEC\nZtrLEKdvVS/VcpNoXA0tz3G6MSCeuiBQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 14,
+   "prev": "815ac90a391d0cb15f1d6936da02438c499ffb8bb2041858af6fba10c1cd1200",
+   "time": "2027-01-19T13:30:02Z",
+   "type": "ballot_reveal",
+   "actor": "ada",
+   "body": {
+    "id": "am-2",
+    "vote": "yes",
+    "salt": "fdee430d40bd57deeac186cd9790033d"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABADpbymzg+qjlsL9oAm5raQbip2OrKMbEHG7YaVvzdnxRAeOImxTcTR/\nxEPlTafZMwXQ864SBPHaKyF3tI2KZ1Aw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 15,
+   "prev": "71feed3dc2a4e84157065f8e1616feb9f6dd3cd6fc2088da60867925aa3e8552",
+   "time": "2027-01-19T13:30:02Z",
+   "type": "ballot_reveal",
+   "actor": "carol",
+   "body": {
+    "id": "am-2",
+    "vote": "yes",
+    "salt": "4c26d9074c27d89ede59270c0ac14b71"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAgG1iITlvHbYnMCQgvS1rJcnA0S/O6wyVszmgCnRBBX+atuFva90cjn\nIBGnYAUvxCg5otgNxeHIlSiA6woQ9lDw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 16,
+   "prev": "f49daa621ede27b99e13edb286bd541e254b569204b7380c171e234554c2c169",
+   "time": "2027-01-22T13:30:02Z",
+   "type": "ballot_close",
+   "actor": "tyler",
+   "body": {
+    "id": "am-2"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0i0VSjoqsegfU+p4dK5VLYj2fA\nRro5OrKeT1tnvzJhcAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAtyBk4Om01gAsJsFXdKa8i+ejvzBKyYraNUPRfrIKRP8vckublSk6wB\n/+XDSzxurKJ8C4Wd7kgXxYlRT2kTLQBA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 17,
+   "prev": "98457bf59ff3530ff0dd41c4ac3acab285e40bc6d6677a763d26415a51c3f0f6",
+   "time": "2027-01-22T14:30:02Z",
+   "type": "ballot_open",
+   "actor": "ada",
+   "body": {
+    "id": "am-3",
+    "kind": "amendment",
+    "subject": {
+     "path": "@protocol",
+     "new_sha256": "dc32f84a8504aa599b6f02900a1a7505da3f336df735f686cf68827abbac6d99"
+    }
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAfVG5YK10P5LTRwyP0sQpGE8U0utIA5/izCZN4m2UCtueyBUCkue3qC\nN7i3Q2xrHid3+TY3lMRexDi24lZqAAAA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 18,
+   "prev": "5c1eee8f1015b4878a784b06c583c375fff8cdca34700f0670e8f92d41ea36f5",
+   "time": "2027-01-22T14:30:02Z",
+   "type": "ballot_commit",
+   "actor": "hiram",
+   "body": {
+    "id": "am-3",
+    "commitment": "cced51520de13a1d8b33b3eef29ab1b05da7d2d8fe5a2fd5dc6c0df17f7af766"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAqQzS/ei92yEvRrnsTfYyZHLeuLKUpn0Kpbc4/gbn6mLASxpWOqvCef\nR63ePVkLSyJIks+VZjmcFLf+94lLLpCw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 19,
+   "prev": "cf880be7b617bd252a6c8806bc9b11ac517bf9ca73fe2b6f2ef10569bc1ffaf2",
+   "time": "2027-01-22T14:30:02Z",
+   "type": "ballot_commit",
+   "actor": "ada",
+   "body": {
+    "id": "am-3",
+    "commitment": "9895d627996ab30b490905b6aabcce3ce71b5ac6beb452d2da6957ae92660cb1"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAel/xJe7YCGwsnvgDlmmZ6C9IcMdiMnVzXHIexcNMVyXP+bmwrGzEc7\nVuOBkeqhMS1J0rs+elmLmnYQe9oNB5BQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 20,
+   "prev": "85656b5e74d63f9603d15c3d3daeed67e760d08423a586ff7d7280533bcca78d",
+   "time": "2027-01-22T14:30:02Z",
+   "type": "ballot_commit",
+   "actor": "carol",
+   "body": {
+    "id": "am-3",
+    "commitment": "cdded2e21ecb83016385a9b50be167c58bd739783eb37b0908be88fa09ad56b4"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA3eOC6gwrdPnzn3ec7jGnS/OeoUZm180qCkIR4SHRIh7sWgKGbStetr\no2AwX3Znyugjn4uAimsNEFfSFWdiHyAQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 21,
+   "prev": "db3bc89265eddf6ecb7fdd863b214e1ebf268d4466b6e25f9f78a0f2c325a06a",
+   "time": "2027-01-29T20:45:03Z",
+   "type": "ballot_reveal",
+   "actor": "hiram",
+   "body": {
+    "id": "am-3",
+    "vote": "yes",
+    "salt": "4f0645761ceff50aec389142f018819b"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABApNvX/SmfK/vXkewwe6WxRxUIF62gbO3xhDgk/b0IoHfOIj+CsOWvR1\nn/l1kqYOrYjd5xAvtgG61WVZGMdmf3BQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 22,
+   "prev": "affc658cc820e4fbb7c7821a1e03415827c7cbf0c248e26c4dab354a5b81013f",
+   "time": "2027-01-29T20:45:03Z",
+   "type": "ballot_reveal",
+   "actor": "ada",
+   "body": {
+    "id": "am-3",
+    "vote": "yes",
+    "salt": "fdee430d40bd57deeac186cd9790033d"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAnbYZ0B0PNgB/+UYcx+AXDAXAuW7IJeBiKuBynXhQBmPMTGY2763Jkc\ngwxBx0tK4d3B+woT1fqMdYAnNjljUuBQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 23,
+   "prev": "d1f96c7ba81c6fa688adeb0d403d3314d1d05e1221bb3558ec339cd8b16967fb",
+   "time": "2027-01-29T20:45:03Z",
+   "type": "ballot_reveal",
+   "actor": "carol",
+   "body": {
+    "id": "am-3",
+    "vote": "yes",
+    "salt": "4c26d9074c27d89ede59270c0ac14b71"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAy55yk2Ufi9lKCacs9Vvhtfi6kAwvrwcWVskWZDYrbymUY2T4zL1ddM\nhtGenFp1iWKxqMECxAqGRANfdVDi3JDw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 24,
+   "prev": "daeae27c881fab5057c807be9d5cda48335582600436658ae2b51342f86aa8f9",
+   "time": "2027-02-01T20:45:03Z",
+   "type": "ballot_close",
+   "actor": "tyler",
+   "body": {
+    "id": "am-3"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0i0VSjoqsegfU+p4dK5VLYj2fA\nRro5OrKeT1tnvzJhcAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAp6Y9R5GVe1ebkORVfeqQyI7yvroNEIq5WaqI8TfTAlrhh5p9eNemVX\n0hS/E9oYHvx0DVDMK6pYdHp9lnuIDwCQ==\n-----END SSH SIGNATURE-----\n"
+  }
+ ],
+ "expect": {
+  "valid": true,
+  "seq": 24,
+  "head": "de6eb5890a22f4852d575274c20a312cdfe103eae431d1de8748e99be5b164b8",
+  "state_sha256": "9ffce1c75b9f61f560bed55359c6c81d7b7e75776f2ee0811a3d3572600f1b97"
+ }
+}

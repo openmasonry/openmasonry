@@ -1,0 +1,10 @@
+# Forms in this folder: application.yml (label `application`), amendment.yml, masterwork.yml.
+# An application is how a person who is not a member introduces themselves; it is never a ledger entry.
+blank_issues_enabled: false
+contact_links:
+  - name: How to join OpenMasonry
+    url: https://github.com/openmasonry/openmasonry/blob/main/wiki/queries/how-to-join-openmasonry.md
+    about: Read this first. Any adult may apply; a Master Builder invites, and only then do you petition.
+  - name: Security vulnerability
+    url: https://github.com/openmasonry/openmasonry/security/advisories/new
+    about: Report privately. Never open a public issue for an unfixed vulnerability.

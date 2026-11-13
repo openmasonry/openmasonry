@@ -1,0 +1,600 @@
+# OpenMasonry: the canonical degree table.
+#
+# This file is the single source of truth for the 33 degrees. Every document,
+# coat of arms and eligibility check is generated from it. Changing it takes an
+# amendment ballot (CONSTITUTION.md, Art. VII).
+#
+# Field reference
+#   n           degree number (1..33)
+#   house       the body that confers it (see [[house]] below)
+#   title       the OpenMasonry title
+#   historical  the name of the corresponding degree in the Ancient and
+#               Accepted Scottish Rite, Southern Jurisdiction (public
+#               historical record; used for reference only, no ritual is
+#               reproduced)
+#   virtue      the virtue the degree asks the member to practice
+#   art         the field of knowledge studied in the degree
+#   lesson      the one-sentence teaching of the degree (original text)
+#   work        the "masterwork" required to apply for it
+#   wait_days   minimum days a member must hold the PREVIOUS degree
+#   examiners   number of examiners drawn by lot (degree >= n, then the Master
+#               Builders: Constitution Art. V.7)
+#   unlocks     the duty the degree makes the member eligible for
+#   tincture, ordinary, charge
+#               heraldic description used by src/openmasonry/heraldry.py
+
+[[house]]
+id = "craft"
+name = "The Craft Lodge"
+range = [1, 3]
+purpose = "Self-knowledge and the tools of the work."
+
+[[house]]
+id = "perfection"
+name = "The Lodge of Perfection"
+range = [4, 14]
+purpose = "Duty, stewardship and justice inside the community."
+
+[[house]]
+id = "rose"
+name = "The Chapter of the Rose"
+range = [15, 18]
+purpose = "Rebuilding, liberty of conscience and active charity."
+
+[[house]]
+id = "kadosh"
+name = "The Council of Kadosh"
+range = [19, 30]
+purpose = "Philosophy, law, and the defense of the commons against capture."
+
+[[house]]
+id = "consistory"
+name = "The Consistory"
+range = [31, 32]
+purpose = "Audit, judgment and the balance of powers."
+
+[[house]]
+id = "council"
+name = "The Supreme Council"
+range = [33, 33]
+purpose = "Guardianship of the Constitution. Serves; never commands."
+
+# ---------------------------------------------------------------- Craft -----
+
+[[degree]]
+n = 1
+house = "craft"
+title = "Apprentice of the Open Craft"
+historical = "Entered Apprentice"
+virtue = "Humility"
+art = "Grammar and Rhetoric: learning to read the work and speak clearly about it"
+lesson = "Before you shape the stone, learn to see the stone that you are."
+work = "Signed declaration of the Landmarks (the petition); after admission, a first public reflection (500+ words) at a public URL the member controls, recorded as a work entry. No examination: the admission ballot confers the degree"
+wait_days = 0
+examiners = 0
+unlocks = "Speak in the Lodge, open issues, join study circles"
+tincture = "argent"
+ordinary = "plain"
+charge = "rough-ashlar"
+
+[[degree]]
+n = 2
+house = "craft"
+title = "Fellow of the Open Craft"
+historical = "Fellowcraft"
+virtue = "Diligence"
+art = "Logic, Arithmetic and Geometry: the seven liberal arts as method"
+lesson = "Knowledge that is not shared is a debt, not a possession."
+work = "One contribution to the commons (code, translation, essay or catalog entry), accepted by the normal review of the resource it joins, examined by two members drawn by lot"
+wait_days = 30
+examiners = 2
+unlocks = "Review Apprentice work, vote on admissions, examine candidates for the 2nd degree when drawn by lot"
+tincture = "argent"
+ordinary = "chevron"
+charge = "level"
+
+[[degree]]
+n = 3
+house = "craft"
+title = "Master Builder"
+historical = "Master Mason"
+virtue = "Fidelity"
+art = "Music and Astronomy: harmony, cycles and the measure of a life"
+lesson = "The temple is never finished; the builder is measured by what outlives them."
+work = "A substantive masterwork (2,000+ words or equivalent work), defended before three examiners: public written questions and answers in the masterwork's public thread, never in a room"
+wait_days = 60
+examiners = 3
+unlocks = "Sponsor candidates; examine candidates for the 2nd and 3rd degrees when drawn by lot, and for any higher degree whose own members are too few; be elected to Lodge office; found a Lodge"
+tincture = "azure"
+ordinary = "chevron"
+charge = "compass"
+
+# ----------------------------------------------------------- Perfection -----
+
+[[degree]]
+n = 4
+house = "perfection"
+title = "Keeper of Discretion"
+historical = "Secret Master"
+virtue = "Discretion"
+art = "Ethics of information: privacy, confidentiality and the duty of silence"
+lesson = "A secret that protects a person is a trust; a secret that protects power is a lie."
+work = "A privacy review of one OpenMasonry process, with findings filed as issues"
+wait_days = 180
+examiners = 3
+unlocks = "Serve as a teller of sealed ballots, once encrypted ballots exist"
+tincture = "sable"
+ordinary = "pale"
+charge = "key"
+
+[[degree]]
+n = 5
+house = "perfection"
+title = "Steward of Memory"
+historical = "Perfect Master"
+virtue = "Gratitude"
+art = "History and archives: honoring those who built before us"
+lesson = "We stand on unmarked foundations; name them."
+work = "An archive entry documenting a person, lodge or idea from the history of fraternal societies, with sources"
+wait_days = 30
+examiners = 3
+unlocks = "Curate the History catalog"
+tincture = "sable"
+ordinary = "fess"
+charge = "column"
+
+[[degree]]
+n = 6
+house = "perfection"
+title = "Scribe of Trust"
+historical = "Intimate Secretary"
+virtue = "Faithfulness"
+art = "Records and signatures: hashes, keys and the integrity of the written word"
+lesson = "Every record is a promise to someone who is not yet born."
+work = "Independently verify the full ledger from genesis and publish the verification transcript"
+wait_days = 30
+examiners = 3
+unlocks = "Operate a witness node, once added by a witness ballot"
+tincture = "azure"
+ordinary = "pale"
+charge = "quill"
+
+[[degree]]
+n = 7
+house = "perfection"
+title = "Arbiter"
+historical = "Provost and Judge"
+virtue = "Justice"
+art = "Dispute resolution: hearing both sides, evidence and proportionality"
+lesson = "Judge the act, not the person; judge yourself first."
+work = "Serve as an observer in one dispute and write a reasoned opinion"
+wait_days = 30
+examiners = 3
+unlocks = "Sit on dispute juries"
+tincture = "gules"
+ordinary = "pale"
+charge = "balance"
+
+[[degree]]
+n = 8
+house = "perfection"
+title = "Intendant of the Works"
+historical = "Intendant of the Building"
+virtue = "Diligence in service"
+art = "Stewardship of shared work: planning, maintenance and delegation"
+lesson = "A builder who will not maintain is only a visitor."
+work = "Maintain one repository, catalog or study circle for 90 days"
+wait_days = 30
+examiners = 3
+unlocks = "Maintain a commons repository"
+tincture = "vert"
+ordinary = "fess"
+charge = "plumb"
+
+[[degree]]
+n = 9
+house = "perfection"
+title = "Elect of the Nine"
+historical = "Elu of the Nine"
+virtue = "Restraint"
+art = "Incident response: acting under provocation without vengeance"
+lesson = "Zeal without restraint is the first apprentice of tyranny."
+work = "Write or improve an incident-response runbook and run a tabletop exercise"
+wait_days = 30
+examiners = 3
+unlocks = "Join the incident rota"
+tincture = "gules"
+ordinary = "saltire"
+charge = "lamp"
+
+[[degree]]
+n = 10
+house = "perfection"
+title = "Elect of the Fifteen"
+historical = "Elu of the Fifteen"
+virtue = "Tolerance"
+art = "Moderation: protecting dialogue from fanaticism, harassment and bad faith"
+lesson = "Tolerate persons, never the abolition of tolerance."
+work = "Moderate a public forum of OpenMasonry or another community for 60 days with a published moderation log"
+wait_days = 30
+examiners = 3
+unlocks = "Become a forum moderator"
+tincture = "gules"
+ordinary = "saltire"
+charge = "star"
+
+[[degree]]
+n = 11
+house = "perfection"
+title = "Elect of the Twelve"
+historical = "Elu of the Twelve"
+virtue = "Equity"
+art = "Economics of the commons: Ostrom's principles, free riding and fair burdens"
+lesson = "A commons dies of silence before it dies of theft."
+work = "A commons-health report on one OpenMasonry resource, scored against Ostrom's eight principles"
+wait_days = 30
+examiners = 3
+unlocks = "Review proposed amendments to operational rules for their effect on the commons"
+tincture = "vert"
+ordinary = "saltire"
+charge = "sheaf"
+
+[[degree]]
+n = 12
+house = "perfection"
+title = "Master Architect"
+historical = "Master Architect"
+virtue = "Prudence"
+art = "System design: geometry of structures, failure modes and simplicity"
+lesson = "Design so that the next builder can change what you built."
+work = "An architecture decision record (ADR) accepted into the canonical repository"
+wait_days = 30
+examiners = 3
+unlocks = "Review protocol-code amendments before their ballot (advisory)"
+tincture = "azure"
+ordinary = "chevron"
+charge = "square"
+
+[[degree]]
+n = 13
+house = "perfection"
+title = "Seeker of the Vault"
+historical = "Royal Arch of Solomon"
+virtue = "Perseverance"
+art = "Research: first principles, primary sources and the patience to dig"
+lesson = "What is buried is not lost to the one who keeps digging honestly."
+work = "A research paper with primary sources, examined as drawn by lot"
+wait_days = 30
+examiners = 3
+unlocks = "Supervise research circles"
+tincture = "or"
+ordinary = "chief"
+charge = "arch"
+
+[[degree]]
+n = 14
+house = "perfection"
+title = "Perfect Elect"
+historical = "Perfect Elu (Grand Elect, Perfect and Sublime Mason)"
+virtue = "Integrity"
+art = "Synthesis of the Perfection: the self as the first commons"
+lesson = "Integrity is the same person in the dark and in the light."
+work = "A public synthesis of degrees 4–13 and a service record: signed work entries or public records of service over at least 365 days"
+wait_days = 30
+examiners = 5
+unlocks = "Preside over a Lodge of Perfection"
+tincture = "or"
+ordinary = "cross"
+charge = "ring"
+
+# ----------------------------------------------------------------- Rose -----
+
+[[degree]]
+n = 15
+house = "rose"
+title = "Knight of the East, the Rebuilder"
+historical = "Knight of the East (or of the Sword)"
+virtue = "Loyalty to the work"
+art = "Resilience: backups, mirrors, recovery and continuity"
+lesson = "Build with a trowel in one hand and a backup in the other."
+work = "Operate a verified mirror of the canonical repository for 90 days"
+wait_days = 180
+examiners = 3
+unlocks = "Operate an official mirror"
+tincture = "vert"
+ordinary = "bend"
+charge = "sword"
+
+[[degree]]
+n = 16
+house = "rose"
+title = "Prince of the Rebuilt City"
+historical = "Prince of Jerusalem"
+virtue = "Civic courage"
+art = "Civic governance: assemblies, mandates and accountability"
+lesson = "A city is rebuilt by citizens, not by princes."
+work = "Organize and document one assembly, with minutes published in the repository"
+wait_days = 60
+examiners = 3
+unlocks = "Convene assemblies"
+tincture = "or"
+ordinary = "bend"
+charge = "tower"
+
+[[degree]]
+n = 17
+house = "rose"
+title = "Knight of East and West"
+historical = "Knight of the East and West"
+virtue = "Universality"
+art = "Comparative traditions: philosophies, religions and cultures in dialogue"
+lesson = "No single tradition owns the light; each one carries a lamp."
+work = "A comparative study across at least three traditions, published in its original language and in one translation into a second language"
+wait_days = 60
+examiners = 3
+unlocks = "Lead translation and outreach programs"
+tincture = "purpure"
+ordinary = "bend"
+charge = "sun-moon"
+
+[[degree]]
+n = 18
+house = "rose"
+title = "Knight of the Rose"
+historical = "Knight Rose Croix"
+virtue = "Charity"
+art = "Active benevolence: mentoring, relief and the ethics of care"
+lesson = "Love that does not act is only a feeling about oneself."
+work = "Mentor two Apprentices to the degree of Fellow and lead one relief action"
+wait_days = 60
+examiners = 5
+unlocks = "Preside over a Chapter of the Rose; administer the relief fund, where one exists"
+tincture = "gules"
+ordinary = "cross"
+charge = "rose"
+
+# ---------------------------------------------------- Council of Kadosh -----
+
+[[degree]]
+n = 19
+house = "kadosh"
+title = "Pontifex, Bridge Builder"
+historical = "Grand Pontiff"
+virtue = "Concord"
+art = "Federation: interoperability between Lodges, nodes and other communities"
+lesson = "Build bridges you are willing to cross in both directions."
+work = "Federate a witness node, or a new Lodge when lodges exist, with interoperability tests"
+wait_days = 365
+examiners = 3
+unlocks = "Approve federation of new Lodges, when lodges exist"
+tincture = "azure"
+ordinary = "fess"
+charge = "bridge"
+
+[[degree]]
+n = 20
+house = "kadosh"
+title = "Master of the Symbolic Lodge"
+historical = "Master of the Symbolic Lodge"
+virtue = "Patience"
+art = "Pedagogy: how adults learn, and how to teach without dominating"
+lesson = "The master's work is complete when the apprentice no longer needs the master."
+work = "Design or substantially improve one degree's study curriculum"
+wait_days = 60
+examiners = 3
+unlocks = "Author curricula; train examiners"
+tincture = "azure"
+ordinary = "chief"
+charge = "book"
+
+[[degree]]
+n = 21
+house = "kadosh"
+title = "Noachite, Keeper of Humility"
+historical = "Noachite, or Prussian Knight"
+virtue = "Humility before the law"
+art = "Universal ethics and precedent: laws every person can accept"
+lesson = "The higher you stand, the lower the law must find you."
+work = "A precedent digest: summarize up to ten rulings from the public record, or all if fewer, and the principles they set"
+wait_days = 60
+examiners = 3
+unlocks = "Maintain the book of precedents"
+tincture = "sable"
+ordinary = "chief"
+charge = "ark"
+
+[[degree]]
+n = 22
+house = "kadosh"
+title = "Knight of the Royal Axe, Dignity of Labor"
+historical = "Knight of the Royal Axe, or Prince of Libanus"
+virtue = "Respect for work"
+art = "Sustainability of labor: maintainers, burnout and fair recognition"
+lesson = "Honor the hands that cut the cedar, not only the names carved on it."
+work = "A recognition audit: identify and credit uncredited contributors"
+wait_days = 60
+examiners = 3
+unlocks = "Run the contributor-recognition rota"
+tincture = "vert"
+ordinary = "pale"
+charge = "axe"
+
+[[degree]]
+n = 23
+house = "kadosh"
+title = "Chief of the Tabernacle, Servant of Rites"
+historical = "Chief of the Tabernacle"
+virtue = "Reverence"
+art = "Ceremony design: ritual as shared meaning and as user experience"
+lesson = "A rite that no longer teaches has become a costume."
+work = "Write or revise an open ceremony (public, original text)"
+wait_days = 60
+examiners = 3
+unlocks = "Edit the open ritual book"
+tincture = "or"
+ordinary = "pale"
+charge = "flame"
+
+[[degree]]
+n = 24
+house = "kadosh"
+title = "Prince of the Tabernacle, Interpreter of Symbols"
+historical = "Prince of the Tabernacle"
+virtue = "Understanding"
+art = "Semiotics: symbols, allegory and their many honest readings"
+lesson = "A symbol is a question that each generation must answer again."
+work = "Ten entries in the Symbols catalog with sources and multiple interpretations"
+wait_days = 60
+examiners = 3
+unlocks = "Curate the Symbols catalog"
+tincture = "purpure"
+ordinary = "pale"
+charge = "triangle"
+
+[[degree]]
+n = 25
+house = "kadosh"
+title = "Knight of the Brazen Serpent, the Healer"
+historical = "Knight of the Brazen Serpent"
+virtue = "Compassion"
+art = "Wellbeing: mental health, burnout and care inside communities"
+lesson = "Heal the one in front of you before you theorize about the many."
+work = "Build or improve a wellbeing support process and train five members in it"
+wait_days = 60
+examiners = 3
+unlocks = "Serve as wellbeing steward"
+tincture = "vert"
+ordinary = "chevron"
+charge = "serpent"
+
+[[degree]]
+n = 26
+house = "kadosh"
+title = "Prince of Mercy"
+historical = "Prince of Mercy, or Scottish Trinitarian"
+virtue = "Mercy"
+art = "Restorative justice: repair, amnesty and the return of the excluded"
+lesson = "Justice that cannot forgive is only accounting."
+work = "Facilitate one restorative process or reinstatement review"
+wait_days = 60
+examiners = 3
+unlocks = "Grant clemency petitions a hearing"
+tincture = "argent"
+ordinary = "chevron"
+charge = "heart"
+
+[[degree]]
+n = 27
+house = "kadosh"
+title = "Commander of the Temple"
+historical = "Knight Commander of the Temple"
+virtue = "Servant leadership"
+art = "Leadership: responsibility without privilege, authority without ownership"
+lesson = "Command is a debt you pay to those who follow."
+work = "Hold an elected office for a full term with a public accountability report"
+wait_days = 60
+examiners = 3
+unlocks = "Stand for House-level office"
+tincture = "gules"
+ordinary = "cross"
+charge = "cross-potent"
+
+[[degree]]
+n = 28
+house = "kadosh"
+title = "Knight of the Sun, Natural Philosopher"
+historical = "Knight of the Sun, or Prince Adept"
+virtue = "Truthfulness"
+art = "Science and epistemology: evidence, doubt and the limits of knowing"
+lesson = "Doubt is the lantern; certainty is where the lantern goes out."
+work = "An evidence review that recommends changing or confirming one OpenMasonry rule (an amendment it proposes need not pass)"
+wait_days = 60
+examiners = 3
+unlocks = "Chair evidence reviews"
+tincture = "or"
+ordinary = "plain"
+charge = "sun"
+
+[[degree]]
+n = 29
+house = "kadosh"
+title = "Knight of Saint Andrew, Equality"
+historical = "Scottish Knight of Saint Andrew"
+virtue = "Equality"
+art = "Accessibility and non-discrimination: the open door kept open"
+lesson = "Every locked door was once called a tradition."
+work = "An accessibility and inclusion audit of the whole admission path"
+wait_days = 60
+examiners = 3
+unlocks = "Raise an equality objection: refer to the Court of Review any rule that refuses or ranks anyone for sex, gender, origin, color, belief or unbelief, class or disability"
+tincture = "azure"
+ordinary = "saltire"
+charge = "saltire-cross"
+
+[[degree]]
+n = 30
+house = "kadosh"
+title = "Kadosh, Guardian against Capture"
+historical = "Knight Kadosh, or Knight of the White and Black Eagle"
+virtue = "Vigilance"
+art = "Adversarial thinking: security, red-teaming and the anatomy of tyranny"
+lesson = "Every institution is one quiet exception away from becoming what it opposed."
+work = "A red-team report against the protocol with at least one fixed finding"
+wait_days = 60
+examiners = 5
+unlocks = "Join the Watch (security response team); answer capture alarms"
+tincture = "sable"
+ordinary = "per-pale"
+charge = "eagle"
+
+# ----------------------------------------------------------- Consistory -----
+
+[[degree]]
+n = 31
+house = "consistory"
+title = "Inspector Inquisitor, the Auditor"
+historical = "Inspector Inquisitor"
+virtue = "Impartiality"
+art = "Audit and judicial review: checking the powerful with their own rules"
+lesson = "Audit the auditors, beginning with yourself."
+work = "A full annual audit of one House, published with dissent sections"
+wait_days = 365
+examiners = 5
+unlocks = "Sit on the Court of Review"
+tincture = "argent"
+ordinary = "pale"
+charge = "eye"
+
+[[degree]]
+n = 32
+house = "consistory"
+title = "Master of the Royal Secret, Equilibrium"
+historical = "Master of the Royal Secret"
+virtue = "Balance"
+art = "Synthesis: the balance of powers and the equilibrium of opposites"
+lesson = "The royal secret is that no one should hold it alone."
+work = "A thesis on the balance of powers in OpenMasonry, defended publicly: written questions and answers in its public thread, never in a room"
+wait_days = 365
+examiners = 7
+unlocks = "Enter the sortition pool of the Supreme Council after 730 days in the degree"
+tincture = "purpure"
+ordinary = "per-saltire"
+charge = "double-eagle"
+
+# -------------------------------------------------------------- Council -----
+
+[[degree]]
+n = 33
+house = "council"
+title = "Sovereign Guardian"
+historical = "Inspector General (honorary, conferred by a Supreme Council)"
+virtue = "Self-limitation"
+art = "Guardianship of the Constitution"
+lesson = "Guard the house so well that it never needs you."
+work = "Not applied for. Drawn by verifiable lot from all eligible 32nd-degree members (Constitution Art. VIII)"
+wait_days = 730
+examiners = 0
+unlocks = "A three-year, non-renewable seat on the Supreme Council"
+tincture = "or"
+ordinary = "per-saltire"
+charge = "delta"

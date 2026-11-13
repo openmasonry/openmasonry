@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# om — the OpenMasonry command line (Python reference until the Go binary ships).
+here="$(cd "$(dirname "$0")/.." && pwd)"
+for py in "$OM_PYTHON" python3.14 python3.13 python3.12 python3.11 python3; do
+  [ -n "$py" ] || continue
+  command -v "$py" >/dev/null 2>&1 || continue
+  if "$py" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)' 2>/dev/null; then
+    PYTHONPATH="$here/src${PYTHONPATH:+:$PYTHONPATH}" exec "$py" -m openmasonry "$@"
+  fi
+done
+echo "om needs Python 3.11 or newer (install it from your package manager or python.org, or set OM_PYTHON)" >&2
+exit 1

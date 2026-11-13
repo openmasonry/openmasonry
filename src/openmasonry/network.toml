@@ -1,0 +1,9 @@
+# Where the canonical fraternity lives (owner/repository on GitHub), and who founds it.
+# Clones and forks verify against the repository and publish into it. Part of @protocol:
+# changing it after genesis is an amendment.
+repository = "openmasonry/openmasonry"
+# The numeric GitHub user id of the first founder: the account that opens the genesis pull
+# request (the "id" at https://api.github.com/users/<login>). The identity gate lets entry 0 in
+# only from this account, and only when its first founder states this id. 0 means "not set":
+# the gate then refuses every genesis. Set it before the genesis is drafted.
+founder_github_id = 355316448

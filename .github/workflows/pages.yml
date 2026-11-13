@@ -1,0 +1,95 @@
+# The Observatory on GitHub Pages: built from the ledger of `main` and published by GitHub's own actions.
+#
+# This file is part of the pinned core (src/openmasonry/protocol.manifest): after the genesis it changes only by
+# a ratified amendment of @protocol. Two settings it cannot enforce are made by hand (docs/operations/LAUNCH.md):
+# Settings -> Pages -> Source: "GitHub Actions", and the `github-pages` environment restricted to `main`
+# (Settings -> Environments -> github-pages -> Deployment branches: `main` only). Without the second, a run on
+# another branch could deploy.
+#
+# Safety: it builds only from `main` (it fetches refs/heads/main itself, never the head of the run that
+# triggered it), runs no code of a pull request, has no pull_request trigger, no job named `judge`, and only the
+# deploy job holds `pages: write` and `id-token: write`. A `workflow_run` after the judge catches the merges
+# the `admit` job makes with GITHUB_TOKEN, which start no `push` run. Both actions are pinned by full commit SHA
+# (the release tag in the comment).
+#
+# The access GitHub grants: the room sync writes, on every run, `actual.json` (om.rooms-actual/1: the room
+# teams, the owners and every installed App) and `runs.jsonl` (its runs, in counts, naming no person). When the
+# repository variable ROOMS_PUBLIC_REPO names the public repository (`owner/name`) where they are published, the
+# build fetches its `main` with plain git and no credentials, and the page shows them beside the roll. The files
+# are data, checked before anything is written; nothing in that repository is run.
+name: Observatory
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_run:
+    workflows: [Judge]
+    types: [completed]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Check out main, with plain git and no credentials
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          set -euo pipefail
+          git init --quiet .
+          git remote add origin "$REPO_URL"
+          git fetch --quiet --no-tags --depth 1 origin refs/heads/main
+          git checkout --quiet --detach FETCH_HEAD
+          python3 --version
+
+      - name: Fetch the access GitHub grants, as the room sync published it
+        if: ${{ vars.ROOMS_PUBLIC_REPO != '' }}
+        env:
+          ROOMS_URL: ${{ github.server_url }}/${{ vars.ROOMS_PUBLIC_REPO }}
+        run: |
+          set -euo pipefail
+          git init --quiet "$RUNNER_TEMP/rooms"
+          git -C "$RUNNER_TEMP/rooms" remote add origin "$ROOMS_URL"
+          git -C "$RUNNER_TEMP/rooms" fetch --quiet --no-tags --depth 1 origin refs/heads/main
+          git -C "$RUNNER_TEMP/rooms" checkout --quiet --detach FETCH_HEAD
+
+      - name: Build the Observatory from the ledger (the replay refuses an invalid ledger)
+        env:
+          PYTHONPATH: src
+          OM_NO_CACHE: "1"
+        run: |
+          set -euo pipefail
+          args=(--out "$RUNNER_TEMP/site")
+          if [ -f "$RUNNER_TEMP/rooms/actual.json" ]; then
+            args+=(--rooms-actual "$RUNNER_TEMP/rooms/actual.json")    # and runs.jsonl beside it
+          fi
+          python3 -P -m openmasonry observatory "${args[@]}"
+
+      - name: Upload the page
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ${{ runner.temp }}/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

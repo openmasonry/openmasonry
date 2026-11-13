@@ -1,0 +1,28 @@
+# OpenMasonry
+
+> An open, tokenless, self-governing fraternity of 33 degrees. Its state is a signed, hash-chained ledger in this Git repository that anyone can replay and verify. Degrees grant duties, never votes. Agents act through the `om` CLI and never handle private keys.
+
+## Start here
+- [AGENTS.md](AGENTS.md): lanes for agents (use, answer, verify, develop) and ground rules
+- [Helping a person take part](docs/agents/START.md): join, vote, advance, leave, step by step
+- [The Guide](skills/om/SKILL.md): the officer-agent that guides a member step by step (`/om`); other officers in `skills/om-*`
+
+## Rules
+- [Whitepaper](docs/whitepaper/WHITEPAPER.md): the intent of the protocol, its mathematics and threat model; Appendix A = entry types in summary
+- [Protocol specification](docs/whitepaper/SPEC.md): the exact rules, as the code enforces them: encoding, constants, state, every entry type, invariants, known differences from the Whitepaper
+- [Constitution](CONSTITUTION.md)
+- [The 33 degrees](docs/degrees/README.md)
+- [Study guides](docs/study/README.md): the public study guide of every degree (virtue, art, lesson, masterwork, examination criteria, reading)
+- [Eternal Landmarks and Declaration](canon/eternal.toml)
+- [Rules of the rooms](docs/governance/ROOMS.md): one closed study room per degree; closed, never secret; no authority
+- [The Custodian's charter](docs/governance/CUSTODIAN.md): the administrator's office, its three keys, corrections (freeze, stay, halt, hold, note, void, undo), how members stop them, how the office ends and how a founder takes it up again
+- [Recovery](docs/operations/RECOVERY.md): a lost or stolen key (with or without a Custodian), an abusive correction, a compromised witness, a rewound ledger, upgrading the core
+
+## Building
+- [Architecture](docs/architecture/ARCHITECTURE.md): the `om` CLI, MCP server, witness, CI judge (`.github/workflows/judge.yml`; `tyler.yml` audits `main`, runs the tests, checks a candidate core and closes stale applications)
+- [Roadmap](ROADMAP.md)
+- [Patron Seals whitepaper](docs/whitepaper/SEALS.md): funding without selling power
+
+## Knowledge
+- [Wiki index](wiki/index.md): history, symbols, protocol concepts, comparisons
+- [Prior art](docs/research/PRIOR-ART.md)

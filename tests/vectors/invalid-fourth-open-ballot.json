@@ -1,0 +1,123 @@
+{
+ "name": "fourth_open_ballot",
+ "description": "A Master Builder with three ballots open opens a fourth.",
+ "entries": [
+  {
+   "seq": 0,
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "time": "2027-01-01T00:00:00Z",
+   "type": "genesis",
+   "actor": "hiram",
+   "body": {
+    "name": "OpenMasonry Vector Lodge",
+    "pins": {
+     "canon/degrees.toml": "cc5055199c8213648f536a6856c9d6879944c48be7151593ad279f73b84b7b32",
+     "canon/eternal.toml": "12b0c895679c6fcd65c22383e697f0665d2b34d69ab33ea702d854936723d9b9",
+     "CONSTITUTION.md": "030b5d72ed8c102041a787ca5f58734d074a43779a5ebd52a9ef56d63346db3d",
+     "@protocol": "255c8e7c0e8369918aca87f9fe4adb10c3ad94e08bd68bb538b089385a8469e0",
+     "docs/governance/CUSTODIAN.md": "920c7fdfc82469ab5e78497fa8f385732e32623583236874d41ee25be4d1da3c",
+     "docs/governance/ROOMS.md": "73261eef72828ccde07731ec48e6d6e5bd43d0d56bc56cfa3d55f4a3e42ddb4d"
+    },
+    "declaration_sha256": "41c3d420815ec46fc92dfaa7b09c0cc64475e3243802bf819ffde8d9dd4b73fb",
+    "founders": [
+     {
+      "login": "hiram",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC/XjZzcCdKOx2cqGf9mKHTdpBxYJmo7JLunbC6tPYgj",
+      "github_id": 1325811063
+     },
+     {
+      "login": "ada",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOvuo8V/A2QmdqyRBs6kSfahraOJgrIAEw4Z/wl0v5t8",
+      "github_id": 4260250382,
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAWZn8G54OaC8xmLcAthqRZMVkYIRZ4Gxpxidwpaf5SSQ24dTiOGhZuN\nSX+Rr8c4sh8I608r6UCUwa7bImtk7WAA==\n-----END SSH SIGNATURE-----\n"
+     },
+     {
+      "login": "carol",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEGoC1uXsCpMjVLZ4gIYzxwbO/eDQuOMd1ox/Hu/qKQD",
+      "github_id": 1277614344,
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAKBEXhWdhwXKs6+DKgPR9NYsLTGQySOZEPGfgKCDqsGuQjtOQpwe7l8\naxlcsP9fj5a42+HEiHtOFwYhnCbdkDDA==\n-----END SSH SIGNATURE-----\n"
+     }
+    ],
+    "witnesses": [
+     {
+      "name": "tyler",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINItFUo6KrHoH1PqeHSuVS2I9nwEa6OTqynk9bZ78yYX",
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0i0VSjoqsegfU+p4dK5VLYj2fA\nRro5OrKeT1tnvzJhcAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA+5fLxK2MvlSZwuGSpDOPwaBiNR5Qioes3siiVGp40GYdUDxFENVUhW\nLY8a9rMkuRbFvb2qQqcy8hBgduTC5rAQ==\n-----END SSH SIGNATURE-----\n"
+     }
+    ],
+    "custodians": [],
+    "custodian_threshold": 0
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAlAKQiIiUA6mJA1h1WYx57LFYZYTm21ZqqpwcfoU5eaTdOVbeRirj20\nBYa7h+QB6kHVmaDTSZhr9+cuhbtyb9Ag==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 1,
+   "prev": "6cadb66c108a965ab2edec0c1ab849541a8f14a24ca71778aa64357dbfb32b93",
+   "time": "2027-01-01T01:00:00Z",
+   "type": "ballot_open",
+   "actor": "ada",
+   "body": {
+    "id": "am-0",
+    "kind": "amendment",
+    "subject": {
+     "path": "docs/page-0.md",
+     "new_sha256": "f8caf73b3379afdba6de7a94e2aa875f986036abf8a320386fd796354dcf2178"
+    }
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAIAYRI754gkh4Uz9weoy7CE2JYVrW7W5ikXnzt92Zrx2jP41mxJhU4J\nPD9KiOu77MBNPNXKqTgOTOpYSHvwNeDA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 2,
+   "prev": "acb83ff759edcaa98843b1ec38c7139a2dc4a7573e097f38cc5f35754cf95033",
+   "time": "2027-01-01T02:00:00Z",
+   "type": "ballot_open",
+   "actor": "ada",
+   "body": {
+    "id": "am-1",
+    "kind": "amendment",
+    "subject": {
+     "path": "docs/page-1.md",
+     "new_sha256": "56b71703006e87836a287d26836e9457c58b18b98b23babcf934b6e9e8d5d4b0"
+    }
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAA5d1g96st/dnQfpZQdmJ/xoirC8bRLu4ca64yOFcQGqJSDL0oZASnc\noqNfGra79JV7FsxmZlQxImslaoZUbxDA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 3,
+   "prev": "b42dfc67571ecf6ef50d13be64d5a31afcc04c833885b6ca805ba23477e7a55c",
+   "time": "2027-01-01T03:00:00Z",
+   "type": "ballot_open",
+   "actor": "ada",
+   "body": {
+    "id": "am-2",
+    "kind": "amendment",
+    "subject": {
+     "path": "docs/page-2.md",
+     "new_sha256": "fbb842eac8abe8dddaf205b04ee9fef12ef93675a527814daa652614485b8915"
+    }
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAEU0NGtF+R2yFx5xlKTTm53BeWgBS6W6QjGcAJivsaJg3nFZsZOSqgm\nkdSEy+j/4wNRg9qWpQAxnsZQKCuYOIDA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 4,
+   "prev": "b94368e1a7b3d57213707963b62a610052f55e2db4e1cffde03abaceec017437",
+   "time": "2027-01-01T04:00:00Z",
+   "type": "ballot_open",
+   "actor": "ada",
+   "body": {
+    "id": "am-3",
+    "kind": "amendment",
+    "subject": {
+     "path": "docs/page-3.md",
+     "new_sha256": "19069ee252fd8c6070426dfad1b22492bf8645775d21750f5c423180cf11bda4"
+    }
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAxV0+0pefT5y4eAeMas5Iy3zxZpIEWxo0Lr6qxzsMoIxiJn39F6Kyyc\nECu6ierAH43aMRZKbN670NznTmgCbmAw==\n-----END SSH SIGNATURE-----\n"
+  }
+ ],
+ "expect": {
+  "valid": false,
+  "seq": 4,
+  "error": "ada has 3 ballots open (a member has at most 3 open ballots of their own at once, and apart from them at most 3 amendment ballots; the ballot that removes a custodian is not counted)"
+ }
+}

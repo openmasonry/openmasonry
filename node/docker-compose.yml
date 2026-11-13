@@ -1,0 +1,31 @@
+# OpenMasonry witness node.
+#   1. ssh-keygen -t ed25519 -N "" -C witness-1 -f ./keys/witness
+#   2. sign the proof (bin/om proof witness witness-1 --key keys/witness --out witness-1.proof) and send
+#      keys/witness.pub and the proof to the founder (genesis --witness ... --witness-proof ...) or to a
+#      Master Builder (a witness ballot); see node/README.md
+#   3. cp .env.example .env  and fill it
+#   4. docker compose up -d --build
+services:
+  witness:
+    build:
+      context: ..
+      dockerfile: node/Dockerfile
+    container_name: openmasonry-witness
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data
+      - ./keys:/keys:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /home/tyler/.cache
+      - /home/tyler/.config
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    mem_limit: 256m
+    cpus: 0.5
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }

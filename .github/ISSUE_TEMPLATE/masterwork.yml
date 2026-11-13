@@ -1,0 +1,19 @@
+name: Masterwork
+description: Register a work submitted for a degree.
+title: "Work for the N°: <short title>"
+labels: [masterwork]
+body:
+  - type: input
+    id: degree
+    attributes: { label: Degree applied for, placeholder: "2" }
+    validations: { required: true }
+  - type: input
+    id: ref
+    attributes: { label: Link to the work (PR, document, repository), placeholder: "https://github.com/…" }
+    validations: { required: true }
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary, and how it serves the degree's art and virtue
+      description: See docs/degrees/degree-NN.md for the requirement.
+    validations: { required: true }

@@ -1,0 +1,135 @@
+{
+ "name": "departure_reversed_by_the_recovery_that_follows",
+ "description": "A member asks for a new key; a day later the old key, in other hands, signs a departure; nobody co-signs and the request expires. The member asks again 90 days after the first request: it follows a recovery asked in time for this departure, so it is accepted, and once completed it reverses the departure.",
+ "entries": [
+  {
+   "seq": 0,
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "time": "2027-01-01T00:00:00Z",
+   "type": "genesis",
+   "actor": "hiram",
+   "body": {
+    "name": "OpenMasonry Vector Lodge",
+    "pins": {
+     "canon/degrees.toml": "cc5055199c8213648f536a6856c9d6879944c48be7151593ad279f73b84b7b32",
+     "canon/eternal.toml": "12b0c895679c6fcd65c22383e697f0665d2b34d69ab33ea702d854936723d9b9",
+     "CONSTITUTION.md": "030b5d72ed8c102041a787ca5f58734d074a43779a5ebd52a9ef56d63346db3d",
+     "@protocol": "255c8e7c0e8369918aca87f9fe4adb10c3ad94e08bd68bb538b089385a8469e0",
+     "docs/governance/CUSTODIAN.md": "920c7fdfc82469ab5e78497fa8f385732e32623583236874d41ee25be4d1da3c",
+     "docs/governance/ROOMS.md": "73261eef72828ccde07731ec48e6d6e5bd43d0d56bc56cfa3d55f4a3e42ddb4d"
+    },
+    "declaration_sha256": "41c3d420815ec46fc92dfaa7b09c0cc64475e3243802bf819ffde8d9dd4b73fb",
+    "founders": [
+     {
+      "login": "hiram",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC/XjZzcCdKOx2cqGf9mKHTdpBxYJmo7JLunbC6tPYgj",
+      "github_id": 1325811063
+     },
+     {
+      "login": "ada",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOvuo8V/A2QmdqyRBs6kSfahraOJgrIAEw4Z/wl0v5t8",
+      "github_id": 4260250382,
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAWZn8G54OaC8xmLcAthqRZMVkYIRZ4Gxpxidwpaf5SSQ24dTiOGhZuN\nSX+Rr8c4sh8I608r6UCUwa7bImtk7WAA==\n-----END SSH SIGNATURE-----\n"
+     },
+     {
+      "login": "carol",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEGoC1uXsCpMjVLZ4gIYzxwbO/eDQuOMd1ox/Hu/qKQD",
+      "github_id": 1277614344,
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAKBEXhWdhwXKs6+DKgPR9NYsLTGQySOZEPGfgKCDqsGuQjtOQpwe7l8\naxlcsP9fj5a42+HEiHtOFwYhnCbdkDDA==\n-----END SSH SIGNATURE-----\n"
+     }
+    ],
+    "witnesses": [
+     {
+      "name": "tyler",
+      "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINItFUo6KrHoH1PqeHSuVS2I9nwEa6OTqynk9bZ78yYX",
+      "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0i0VSjoqsegfU+p4dK5VLYj2fA\nRro5OrKeT1tnvzJhcAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA+5fLxK2MvlSZwuGSpDOPwaBiNR5Qioes3siiVGp40GYdUDxFENVUhW\nLY8a9rMkuRbFvb2qQqcy8hBgduTC5rAQ==\n-----END SSH SIGNATURE-----\n"
+     }
+    ],
+    "custodians": [],
+    "custodian_threshold": 0
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAlAKQiIiUA6mJA1h1WYx57LFYZYTm21ZqqpwcfoU5eaTdOVbeRirj20\nBYa7h+QB6kHVmaDTSZhr9+cuhbtyb9Ag==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 1,
+   "prev": "6cadb66c108a965ab2edec0c1ab849541a8f14a24ca71778aa64357dbfb32b93",
+   "time": "2027-01-02T00:00:00Z",
+   "type": "rekey_recover",
+   "actor": "carol",
+   "body": {
+    "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJnMWJPBQlN2dGuHIrYZdJnZaXA6V3Tj+3K0omd5vemT",
+    "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgmcxYk8FCU3Z0a4cithl0mdlpcD\npXdOP7crSiZ3m96ZMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAoE4Q+0oGpiT7mSZYex0IoxbNm8/j3XqZYLKaW2BeORJ3bwtXrcIGLc\n02jRHgAl969UqG3Cwvw5eSPRl/NKOyDQ==\n-----END SSH SIGNATURE-----\n"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgmcxYk8FCU3Z0a4cithl0mdlpcD\npXdOP7crSiZ3m96ZMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA2R+YjR7Z51ZcGgkrnQgrwChh0HcRejFA+5lHAYp9Bbk41nKif+VjBQ\newX+tAk4Pz3cFCWb00mMYueWrqRGQUBQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 2,
+   "prev": "9172528e393c4d02796a19cdb3ee7e6f658fe08f435e923bef8a7f7ec770fd22",
+   "time": "2027-01-03T00:00:00Z",
+   "type": "depart",
+   "actor": "carol",
+   "body": {},
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgQagLW5ewKkyNUtniAhjPHBs794\nNC44x3WjH8e7+opAMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAE2xKBgIQHTRH3CTNu7OrsGSb55KIol/3vsGvpByfHauwKBwTv0nIoT\nI3avR2nwyyJ73ew6VOc/eM1B7Ja5ZjCw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 3,
+   "prev": "879ad90d4378e09b5ad0291866c6273f252b00c30b03e817f7fb7855b43e3314",
+   "time": "2027-04-02T00:00:00Z",
+   "type": "rekey_recover",
+   "actor": "carol",
+   "body": {
+    "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICpqX4rwSim0O28BnCIvs2TN4PdzNHZgDfiVbPSaXZX8",
+    "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgKmpfivBKKbQ7bwGcIi+zZM3g93\nM0dmAN+JVs9JpdlfwAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAebzEOi0eDf6PV+1EStGouKolj8Nt6XTmBNKIvmLkSfE9r6TVH7kWz+\ncTnuQwmHFON4ubLNWAGJRbDeY2zKu7DQ==\n-----END SSH SIGNATURE-----\n"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgKmpfivBKKbQ7bwGcIi+zZM3g93\nM0dmAN+JVs9JpdlfwAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAhLr8m1jNn5LtAwH4vhpWeo7NxsiWcvi6QtqCR19bXddV0wgTjRB/R+\nH7KFp0z7ssHYTBCl1WI9EsU1//JG9/Bg==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 4,
+   "prev": "91f8a1907f76900797f4a52f48019d5d3c54149d6416ac170ec580822929e8e0",
+   "time": "2027-04-02T01:00:00Z",
+   "type": "rekey_cosign",
+   "actor": "hiram",
+   "body": {
+    "login": "carol"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgL9eNnNwJ0o7HZyoZ/2YodN2kHF\ngmajsku6dsLq09iCMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABASKmg504MnRediDh3Qt61BFGeWGXGhLc4qr2W0w/Ea1cHOwQvyIedfz\neSxqjnOOkyr8m2WT0ce/eCDUUY2kKuDw==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 5,
+   "prev": "f0319e43ba420b1a7c5cc27276d308138c4c51d5a4038689ad9cf7aaf4adc540",
+   "time": "2027-04-02T02:00:00Z",
+   "type": "rekey_cosign",
+   "actor": "ada",
+   "body": {
+    "login": "carol"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg6+6jxX8DZCZ2rJEGzqRJ9qGto4\nmCsgATDhn/CXS/m3wAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAkxmGuh3a5JFHgxNWuQdhBOhE5PF/1LX12SdvRDlXrq1kItbn9thoFJ\nM3InZWROvvX38kSNrUUeWI4g5oCvOBAQ==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 6,
+   "prev": "32aadf09fb96ee3f48bfc85e2654ae1c729c8f58a7d35778ad4bad866ee906a6",
+   "time": "2027-05-17T02:00:00Z",
+   "type": "rekey_recover_apply",
+   "actor": "carol",
+   "body": {},
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgKmpfivBKKbQ7bwGcIi+zZM3g93\nM0dmAN+JVs9JpdlfwAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABA9IRJ3QgCpARHQvfJ6nivWYocnzC5A4Hy5I9RGh8K3IzTf9w8+guYDv\nYtn7UPmzp5dozTswcSCNhqRkJ57VHJAA==\n-----END SSH SIGNATURE-----\n"
+  },
+  {
+   "seq": 7,
+   "prev": "9899a27ac7be203e43b05292a5e99fca6c9530f03d51302b6e07307744b40c24",
+   "time": "2027-05-17T03:00:00Z",
+   "type": "work",
+   "actor": "carol",
+   "body": {
+    "ref": "https://example.org/work"
+   },
+   "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgKmpfivBKKbQ7bwGcIi+zZM3g93\nM0dmAN+JVs9JpdlfwAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAC6W5dnuIUUJRLwdng3Mc0x0E20rTFESZzG0pbCeiuzFCcKLLTUr5LM\n6i2AwnZBD062mzK9WXYYTZ/HfdrXjUAA==\n-----END SSH SIGNATURE-----\n"
+  }
+ ],
+ "expect": {
+  "valid": true,
+  "seq": 7,
+  "head": "221d1885bdae5ec3d0aa84e06ee36b02ef3d04a6436645d9bd3807be247567ef",
+  "state_sha256": "cea2750a7265f41e85f133ce1713fb2154e757c4ecb5401e7de78ddfd5f8af8b"
+ }
+}

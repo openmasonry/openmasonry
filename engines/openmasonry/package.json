@@ -1,0 +1,39 @@
+{
+  "name": "@openmasonry/engine",
+  "version": "0.1.0",
+  "description": "OpenMasonry MCP engine: MCP access for members' agents, over local stdio and a public read-only HTTP endpoint. It never signs.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "openmasonry-mcp": "./dist/serve-stdio.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": "^22.20.0 || >=24.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc",
+    "test": "npm run build && vitest run",
+    "check": "npm run typecheck && npm test",
+    "serve:stdio": "node dist/serve-stdio.js",
+    "serve:http": "node dist/serve-http.js",
+    "client-entry": "node dist/client-entry.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.2",
+    "typescript": "7.0.2",
+    "vitest": "4.1.12"
+  },
+  "overrides": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "zod": "4.6.7"
+  }
+}

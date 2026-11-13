@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "OpenMasonry: an Open Craft for Everyone"
+message: "If you use or discuss OpenMasonry, please cite the whitepaper."
+type: software
+authors:
+  - name: "The OpenMasonry contributors"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/openmasonry/openmasonry"
+keywords: [fraternity, governance, sortition, ledger, commons, freemasonry, dao]

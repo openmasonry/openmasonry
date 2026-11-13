@@ -1,0 +1,12 @@
+# Normalize line endings so digests never drift between platforms (CRLF would change sha256).
+* text=auto eol=lf
+*.svg text eol=lf
+# The Windows launcher: cmd.exe reads its labels reliably only with CRLF line endings.
+bin/om.cmd text eol=crlf
+
+# Ledger entries are signed bytes: never convert them in any way.
+ledger/entries/**/*.json -text
+# Public reasons, anchors and archived canons are hashed as raw bytes, and a reason may hold CR: never convert them either.
+ledger/reasons/** -text
+ledger/anchors/** -text
+canon/history/** -text
