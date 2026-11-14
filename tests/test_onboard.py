@@ -116,7 +116,10 @@ class Door(unittest.TestCase):
 
     def onboard(self, fake: FakeRun, repo=False, **kw) -> tuple[int, dict]:
         out = io.StringIO()
+        # The dialog channel is the machine's (a CI runner has no screen and no terminal): fix it to a terminal so
+        # these stages do not depend on where the tests run; the platform check has its own tests.
         with mock.patch.object(onboard, "_run", fake), contextlib.redirect_stdout(out), \
+                mock.patch.object(onboard, "dialog_channel", lambda: "terminal"), \
                 mock.patch.object(actions, "is_repo_ledger", lambda led: repo), \
                 mock.patch.object(actions, "canonical_status", lambda known=(): ("in_sync", "ledger in sync")):
             code = onboard.cmd_onboard(self.args(**kw))
