@@ -1,0 +1,39 @@
+{
+  "seq": 0,
+  "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+  "time": "2026-11-14T10:51:33Z",
+  "type": "genesis",
+  "actor": "openmasonry",
+  "body": {
+    "name": "OpenMasonry",
+    "pins": {
+      "canon/degrees.toml": "c5b6349136cacc6244701b9a78433eb89fa643e7fd5a07bd39ce882d6ea2e850",
+      "canon/eternal.toml": "f1133bd874764f3a284a107cf2da1a0b782560d10de5eeed6e25b3f3c755b27b",
+      "CONSTITUTION.md": "813d54ff6bc54de3e8888ec20fcb802bd615c6b7929b2252cc288d4f80a90f48",
+      "@protocol": "baffa9d91ed066851be19310c0dd688e4ca453b68b13a2656aca2c9263c9ba25",
+      "docs/governance/CUSTODIAN.md": "ea04ec07b1e1c87c73038485c526471d781a455e8fced9c9dc3cde9551dcbebb",
+      "docs/governance/ROOMS.md": "4d71ad85063999182ee4477d6e5aca57eff440822a694828a5f9ed270d83bdee"
+    },
+    "declaration_sha256": "8d602eb694e05a9343e5a7b7af6d41d1a839efca59f27e727d35432889c353c9",
+    "founders": [
+      {
+        "login": "openmasonry",
+        "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINERH1QMCklKcBcKEzpeowKgQon+PolOykaOJFK+aFST",
+        "github_id": 355316448
+      }
+    ],
+    "witnesses": [],
+    "custodians": [
+      {
+        "name": "keeper",
+        "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8WI3zslyUFg2eZAFtoK2nOI+jOiFO7pAdhxC2Nvq2o",
+        "revoke_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIILABZkcFfK7fCiNQmNXe+W/IpW4vWAAHJxII6cTSQTj",
+        "member": "openmasonry",
+        "proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgPxYjfOyXJQWDZ5kAW2grac4j6M\n6IU7ukB2HELY2+ragAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAKtvuohf/dXw8mhXaZ2WcuJLqyns35s8AJCXth6PaZvoiAf8getMSxq\ngAx7hBbXqNyjMB/CBsKQjYCNIXisM9Dw==\n-----END SSH SIGNATURE-----\n",
+        "revoke_proof": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAggsAFmRwV8rt8KI1CY1d75b8ilb\ni9YAAcnEgjpxNJBOMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAygarCxjLTCgvUWZLnLP5aHCmXmZeXR2FcojNiOcomNSi/WJHeXKJJZ\n97tPvGqKKmg1PlRk/NqKM4q/0q7gu5BQ==\n-----END SSH SIGNATURE-----\n"
+      }
+    ],
+    "custodian_threshold": 1
+  },
+  "sig": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg0REfVAwKSUpwFwoTOl6jAqBCif\n4+iU7KRo4kUr5oVJMAAAALb3Blbm1hc29ucnkAAAAAAAAABnNoYTUxMgAAAFMAAAALc3No\nLWVkMjU1MTkAAABAAq8AEILpwgggc8Q6E/PMLEARr6n8C+pJnQAUT0tTbv0Jr1ZHMXP0dj\n0B7Fk+OcKgEP/DAo1K+6BMdveLwJ9CCg==\n-----END SSH SIGNATURE-----\n"
+}
