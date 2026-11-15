@@ -12,7 +12,7 @@
 ![Dependencies](https://img.shields.io/badge/runtime_deps-Python_stdlib_%2B_OpenSSH-blue.svg)
 ![Status](https://img.shields.io/badge/status-v0.1_Genesis-orange.svg)
 
-[Whitepaper](docs/whitepaper/WHITEPAPER.md) · [Specification](docs/whitepaper/SPEC.md) · [Constitution](CONSTITUTION.md) · [The 33 Degrees](docs/degrees/README.md) · [Architecture](docs/architecture/ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Patron Seals](docs/whitepaper/SEALS.md) · [For agents](AGENTS.md) · [Wiki](wiki/index.md) · [Contributing](CONTRIBUTING.md) · [Custodian's charter](docs/governance/CUSTODIAN.md) · [Launch checklist](docs/operations/LAUNCH.md) · [Recovery](docs/operations/RECOVERY.md)
+[Observatory](https://openmasonry.github.io/openmasonry/) · [Whitepaper](docs/whitepaper/WHITEPAPER.md) · [Specification](docs/whitepaper/SPEC.md) · [Constitution](CONSTITUTION.md) · [The 33 Degrees](docs/degrees/README.md) · [Architecture](docs/architecture/ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Patron Seals](docs/whitepaper/SEALS.md) · [For agents](AGENTS.md) · [Wiki](wiki/index.md) · [Contributing](CONTRIBUTING.md) · [Custodian's charter](docs/governance/CUSTODIAN.md) · [Launch checklist](docs/operations/LAUNCH.md) · [Recovery](docs/operations/RECOVERY.md)
 
 </div>
 
@@ -64,7 +64,7 @@ Every degree requires a public *masterwork* that improves the commons, so the fr
 
 ## Rooms
 
-Each degree has a **room**: a closed place where those who study it talk, ask questions, share drafts and mentor one another. A room is closed but never secret (Landmark II): its existence, its rules and its roll are public; its door opens by rule, to the members of that degree and of every higher one, as the ledger shows; nothing said in it has force; and no one owes silence about it. The teaching of every degree, and everything a member is examined on, stays public in [`docs/study/`](docs/study/README.md). The 33 rooms are private repositories of a separate GitHub organization, `openmasonry-org`, for conversation only; a published program sets their readers from the ledger and, on every run, writes, and its workflow publishes to the public repository named by `ROOMS_PUBLIC_REPO`, the access the host actually grants (the readers of each room, the owners of the organization and every installed application) and an anonymous log of its runs. The program is built, not running yet: the rooms open at the public launch; their rules are already law: [Constitution Art. XV](CONSTITUTION.md#article-xv-rooms) and the [rules of the rooms](docs/governance/ROOMS.md).
+Each degree has a **room**: a closed place where those who study it talk, ask questions, share drafts and mentor one another. A room is closed but never secret (Landmark II): its existence, its rules and its roll are public; its door opens by rule, to the members of that degree and of every higher one, as the ledger shows; nothing said in it has force; and no one owes silence about it. The teaching of every degree, and everything a member is examined on, stays public in [`docs/study/`](docs/study/README.md). The 33 rooms are private repositories of a separate GitHub organization, `openmasonry-org`, for conversation only; a published program sets their readers from the ledger and, on every run, writes, and its workflow publishes to the public repository named by `ROOMS_PUBLIC_REPO`, the access the host actually grants (the readers of each room, the owners of the organization and every installed application) and an anonymous log of its runs. The rooms opened at the public launch (2026-11-14): the program runs every hour and publishes to [`openmasonry-org/rooms-roll`](https://github.com/openmasonry-org/rooms-roll). Their rules are law: [Constitution Art. XV](CONSTITUTION.md#article-xv-rooms) and the [rules of the rooms](docs/governance/ROOMS.md).
 
 ## The Custodian and corrections
 
@@ -98,7 +98,7 @@ Requirements: Python ≥ 3.11, and OpenSSH ≥ 8.1 to sign, 8.2 for a hardware k
 git clone https://github.com/openmasonry/openmasonry.git && cd openmasonry
 ```
 
-Verify the ledger from genesis (prints `ledger is empty (no genesis yet)` before the Founding Ceremony):
+Verify the ledger from genesis (it prints `VALID`, the number of entries and the head):
 
 ```bash
 PYTHONPATH=src python3 -m openmasonry verify --tree
@@ -140,14 +140,14 @@ Every pull request is judged by the `judge` job of [`judge.yml`](.github/workflo
 |---|---|
 | [`docs/whitepaper/`](docs/whitepaper/) | the Whitepaper (intent), the [specification](docs/whitepaper/SPEC.md) (the exact rules, constants and messages) and the Patron Seals paper |
 | [`CONSTITUTION.md`](CONSTITUTION.md) | the Constitution (governed file) |
-| [`docs/governance/`](docs/governance/CUSTODIAN.md) | the [Custodian's charter](docs/governance/CUSTODIAN.md) (what the office does on GitHub and in the ledger, and what it never does) and the [rules of the rooms](docs/governance/ROOMS.md), both governed files; the public description of the Custodian's private [Console](docs/governance/CONSOLE.md) (built, not operating yet), a working tool that decides nothing and whose binding outputs are all public; and the [moderation log](docs/governance/MODERATION-LOG.md), which is the ledger itself |
+| [`docs/governance/`](docs/governance/CUSTODIAN.md) | the [Custodian's charter](docs/governance/CUSTODIAN.md) (what the office does on GitHub and in the ledger, and what it never does) and the [rules of the rooms](docs/governance/ROOMS.md), both governed files; the public description of the Custodian's private [Console](docs/governance/CONSOLE.md) (operating since the public launch), a working tool that decides nothing and whose binding outputs are all public; and the [moderation log](docs/governance/MODERATION-LOG.md), which is the ledger itself |
 | [`docs/operations/`](docs/operations/LAUNCH.md) | the [launch checklist](docs/operations/LAUNCH.md) (GitHub settings and the Founding Ceremony) and the [recovery runbooks](docs/operations/RECOVERY.md) (a lost or stolen key, a lost host, a flaw in the protocol, upgrading the core, the last resort) |
 | [`docs/study/`](docs/study/README.md) | the public study guide of every degree |
 | [`canon/`](canon/) | the degree table, the eternal Landmarks and the archive of ratified canons (`canon/history/`), pinned at genesis |
 | [`src/openmasonry/`](src/openmasonry/) | the pinned core (`@protocol`): ledger, ballot, lot, pins and the verifier's entry point (`verify.py`); and, outside the pin, the CLI, the Guide (`guide.py`), member commands (`actions.py`) and heraldry |
 | [`skills/`](skills/) | the officers (Guide, Counselor, Secretary, Wardens, Almoner, Tyler) as Agent Skills |
 | [`bin/om`](bin/om) | the `om` command (wraps the Python CLI until the Go binary ships) |
-| [`ledger/`](ledger/) | the Tracing Board: `entries/` (one signed file per event, `NNNN/NNNNNN.json`, in shards of 1,000; empty until the Founding Ceremony), `anchors/` (timestamp proofs of checkpoints) and `reasons/` (the public reason of every correction, named after its SHA-256) |
+| [`ledger/`](ledger/) | the Tracing Board: `entries/` (one signed file per event, `NNNN/NNNNNN.json`, in shards of 1,000; the first is the genesis, signed at the Founding Ceremony on 2026-11-14), `anchors/` (timestamp proofs of checkpoints) and `reasons/` (the public reason of every correction, named after its SHA-256) |
 | [`tests/`](tests/) | the protocol test suite and the conformance vectors (`tests/vectors/`: small ledgers with the state digest or the refusal a verifier must reach) |
 | [`heraldry/`](heraldry/) | generated coats of arms of the 33 degrees |
 | [`node/`](node/) | the witness node (Docker) for VPS operators: closes ballots, draws lots, checkpoints and anchors |
@@ -165,7 +165,7 @@ OpenMasonry is **tamper-evident**, not "unhackable": rewriting history is detect
 - **Votes are public after reveal** until encrypted ballots land (v0.3).
 - **Witnesses.** The founding ceremony is expected to name one witness or none, and the verifier records checkpoints without counting them toward finality, so checkpoints are not yet Byzantine-tolerant.
 - **Procedural rules.** Some rules of the Constitution bind members but are not enforced by the verifier (Whitepaper §8.5).
-- **One host, one administrator.** Until the Sunset the Custodian is the sole GitHub administrator, bound by the public [Custodian's charter](docs/governance/CUSTODIAN.md); mirrors and the [recovery runbooks](docs/operations/RECOVERY.md) are the mitigation. Until the repository is public with a protected `main` branch, outsiders cannot fork or take part and the witness cannot auto-merge (Whitepaper §8.3, §9.2).
+- **One host, one administrator.** Until the Sunset the Custodian is the sole GitHub administrator, bound by the public [Custodian's charter](docs/governance/CUSTODIAN.md); mirrors and the [recovery runbooks](docs/operations/RECOVERY.md) are the mitigation. The repository is public with a protected `main` branch. While `@openmasonry` is the only code owner, a code or docs pull request it opens itself cannot be approved (GitHub refuses self-approval) and waits for a second code owner; ledger pull requests need no review.
 
 See the [threat model](docs/whitepaper/WHITEPAPER.md#8-integrity-threat-model-and-survivability).
 

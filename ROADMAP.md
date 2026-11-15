@@ -4,13 +4,13 @@ Each version has an **exit criterion**: what must be true and verified before th
 
 ```
  v0.1 Genesis ──► v0.2 om ──► v0.3 Discretion ──► v0.4 Keys ──► v0.5 Federation ──► v0.6 Witnesses ──► v0.7 Seals ──► v1.0 Sunset
-  (protocol built;   Q1 2027      Q2 2027             Q2 2027       Q3 2027             Q3 2027            Q4 2027        2028
-   launch pending)
+  (launched          Q1 2027      Q2 2027             Q2 2027       Q3 2027             Q3 2027            Q4 2027        2028
+   2026-11-14)
 ```
 
 ## v0.1 "Genesis"
 
-Status: the protocol is built and tested; the genesis is not signed and the repository is not public yet.
+Status: launched on 2026-11-14. The repository is public with a protected `main`, the genesis is signed (one founder, one Custodian, no witness yet), and the rooms, the Observatory and the Console operate. Still to come: the first witness and the first admissions (the exit criterion below).
 
 ### Built
 
@@ -32,13 +32,13 @@ Status: the protocol is built and tested; the genesis is not signed and the repo
 - **Runbooks.** [RECOVERY.md](docs/operations/RECOVERY.md) (keys, hosts, protocol flaws, upgrading the core, the last resort) and the [launch checklist](docs/operations/LAUNCH.md).
 - A Python test suite (standard library `unittest`) that covers the protocol, the gates, the tools and the vectors.
 
-### Before the public launch, in this order
+### The public launch, in this order
 
-1. **Organization and rooms.** The GitHub organization `openmasonry-org` holds the 33 rooms of study, one private repository per degree; the canonical repository stays `openmasonry/openmasonry`. The rule is already law (Landmark II, Constitution Art. XV, [rules of the rooms](docs/governance/ROOMS.md)); the rooms open at the launch. Public study outlines for all 33 degrees, full guides for the first three ([docs/study/](docs/study/README.md)).
-2. **The room sync program.** A published program that derives the readers of each room from the ledger and applies them, with guards against mass changes, and that on every run writes, and its workflow publishes to the public repository named by `ROOMS_PUBLIC_REPO`, the access the host actually grants (the readers of each room, the owners of the organization and every installed application) and an anonymous log of its runs. Built: the rule is pinned (`src/openmasonry/rooms.py`, SPEC §15) and the program is [`ops/rooms/sync.py`](ops/rooms/sync.py); what remains is the setup of its GitHub App and of the private `ops` repository ([ops/rooms/README.md](ops/rooms/README.md)).
-3. **Observatory and Console.** The Observatory: a public page computed from the ledger and the access the room sync publishes (members by degree, ballots, the admission funnel, witnesses, every correction and its state). The Console: the Custodian's private, local view of what GitHub shows only to an administrator, whose data sources and limits are public, and which decides nothing: every output that binds is public ([CONSOLE.md](docs/governance/CONSOLE.md)). Both are built (`bin/om observatory --out DIR`; the Console privately); the Observatory's workflow, `.github/workflows/pages.yml`, is part of the pinned core, and what remains is turning GitHub Pages on ([ops/observatory/README.md](ops/observatory/README.md)).
+1. **Organization and rooms.** The GitHub organization `openmasonry-org` holds the 33 rooms of study, one private repository per degree; the canonical repository stays `openmasonry/openmasonry`. The rule is already law (Landmark II, Constitution Art. XV, [rules of the rooms](docs/governance/ROOMS.md)); the rooms opened at the launch. Public study outlines for all 33 degrees, full guides for the first three ([docs/study/](docs/study/README.md)).
+2. **The room sync program.** A published program that derives the readers of each room from the ledger and applies them, with guards against mass changes, and that on every run writes, and its workflow publishes to the public repository named by `ROOMS_PUBLIC_REPO`, the access the host actually grants (the readers of each room, the owners of the organization and every installed application) and an anonymous log of its runs. Built: the rule is pinned (`src/openmasonry/rooms.py`, SPEC §15) and the program is [`ops/rooms/sync.py`](ops/rooms/sync.py); its GitHub App and the private `ops` repository are set up, and it runs every hour ([ops/rooms/README.md](ops/rooms/README.md)).
+3. **Observatory and Console.** The Observatory: a public page computed from the ledger and the access the room sync publishes (members by degree, ballots, the admission funnel, witnesses, every correction and its state). The Console: the Custodian's private, local view of what GitHub shows only to an administrator, whose data sources and limits are public, and which decides nothing: every output that binds is public ([CONSOLE.md](docs/governance/CONSOLE.md)). Both are built (`bin/om observatory --out DIR`; the Console privately); the Observatory's workflow, `.github/workflows/pages.yml`, is part of the pinned core, and it is published on GitHub Pages ([ops/observatory/README.md](ops/observatory/README.md)).
 4. **Rehearsal.** The whole game in a throwaway copy of the repository ([LAUNCH.md](docs/operations/LAUNCH.md#rehearsing-the-ceremony)) and a public sandbox repository: genesis with custodian keys, an invitation and an admission, examinations to the 3rd degree, a stay, a void stopped by objection, an undo, a halt, a freeze and a key recovery, the removal of a Custodian, and each recovery runbook once.
-5. **Launch.** The repository becomes public with a protected `main` branch and the ruleset of the launch checklist; the Founding Ceremony with three keys generated and stored separately (member key, custodian key, revoke key); the first witness as a Docker container on a VPS; the first invitations.
+5. **Launch** (done on 2026-11-14, except the first witness and the first invitations). The repository becomes public with a protected `main` branch and the ruleset of the launch checklist; the Founding Ceremony with three keys generated and stored separately (member key, custodian key, revoke key); the first witness as a Docker container on a VPS; the first invitations.
 
 **Exit:** genesis drafted with `scripts/genesis.sh` (it names the Custodian) on a clean checkout of `main` and approved by the founder (`bin/om approve <digest>`), the Observatory published, and the first admission ballots closed.
 

@@ -35,7 +35,7 @@ Three rules hold for every fix below:
 | `git: 'switch' is not a git command` when publishing | git older than 2.23 | update git |
 | `gh: unknown command "switch"` or `unknown flag: --type` | an old GitHub CLI from a distribution package | install a current one from the official repository of cli.github.com |
 | `· curl not found: the key listing was not checked …` | `curl` is not installed | install `curl`, or check by hand in a browser: `https://github.com/LOGIN.keys` |
-| `git clone` says `Repository not found` | the canonical repository is not public yet | nobody can apply or join until it is; nothing to fix |
+| `git clone` says `Repository not found` | a mistyped URL, or a fork that does not exist yet | clone `https://github.com/openmasonry/openmasonry.git` exactly; for a fork, wait a minute after creating it |
 
 ## 2. GitHub login and account
 

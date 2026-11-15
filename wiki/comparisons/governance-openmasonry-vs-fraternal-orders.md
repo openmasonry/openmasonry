@@ -47,7 +47,7 @@ In OpenMasonry an office is a seat held by election, lot or naming (Constitution
 | Accounts | Reported internally to members | Public (Landmark II). There are no fees |
 | Ritual | Reserved | Original, public ceremonies |
 | Teaching | Given degree by degree to those admitted to it | Public for every degree (Landmark II) |
-| Closed meetings | The tyled lodge: proceedings reserved to members | Study [[rooms]], closed but never secret: public rules and roll, no decisions, no duty of silence (§10.6; they open at the public launch) |
+| Closed meetings | The tyled lodge: proceedings reserved to members | Study [[rooms]], closed but never secret: public rules and roll, no decisions, no duty of silence (§10.6; they opened at the public launch) |
 | Use of exceptional power | Recorded internally, under each grand body's own rules | Every correction is a ledger entry with its ground and its reason, readable by anyone; acts of moderation outside the ledger are recorded in it as notes |
 | Verification | The secretariat is trusted | Anyone can replay the entire ledger offline ([[chained-ledger]]) |
 | Automation | None | The [[tyler]] validates every change in CI |
