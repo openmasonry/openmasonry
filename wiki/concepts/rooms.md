@@ -16,7 +16,7 @@ sources:
 
 Each of the 33 degrees has a room: a closed place where the people who study that degree talk, ask questions, share drafts and mentor one another. A room is **closed but never secret**. Its existence, its rules and its roll are public; only what is written inside stays among its readers; and nothing said in it decides anything.
 
-**Status.** The rooms are law already (Landmark II, Constitution Art. XV, and `docs/governance/ROOMS.md`, a governed file pinned at genesis). They are not operating yet: they open at the public launch. The program that sets each room's readers from the ledger (`ops/rooms/sync.py`) is built, not running yet.
+**Status.** The rooms are law already (Landmark II, Constitution Art. XV, and `docs/governance/ROOMS.md`, a governed file pinned at genesis). They opened at the public launch (2026-11-14). The program that sets each room's readers from the ledger (`ops/rooms/sync.py`) runs every hour and publishes the access the host actually grants to `openmasonry-org/rooms-roll`.
 
 **Where they live.** Apart from the canonical repository, in the separate GitHub organization `openmasonry-org`: 33 private repositories, one per degree, each read by its own closed team, for conversation only. Until the published access program runs, nobody is added to a room by hand (`docs/operations/LAUNCH.md`).
 

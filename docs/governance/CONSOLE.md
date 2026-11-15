@@ -1,6 +1,6 @@
 # The Custodian Console
 
-**Status: built, not operating yet.** The Console exists, privately, and starts watching at the public launch. This page is its public description: the Console is built to these rules and operates under them.
+**Status: operating since the public launch (2026-11-14).** The Console runs privately. This page is its public description: the Console is built to these rules and operates under them.
 
 OpenMasonry is measured in two layers. The **Observatory** is a public page, built and not yet published: it is computed only from the ledger and from the access the room sync publishes, so anyone can reproduce every number on it. The **Console** is private: it is the tool the [Custodian](CUSTODIAN.md) uses to watch over the repository and the rooms, and it reads some facts that only an administrator of the GitHub organization can see. Because it is private, everything about it except its data is public: what it reads, what it never reads, how long it keeps what it reads, and who may ask about it.
 

@@ -24,5 +24,5 @@ The basic unit of Freemasonry. The word has two senses: the organized group of m
 - **Offices:** Worshipful Master (3rd+), two Wardens (3rd+), Secretary, Treasurer (relief fund only, Landmark III) and Steward of Light (mentoring). Terms are 1 year, renewable once, and elections follow the amendment rule (see [[decision-function]]).
 - The corresponding symbolic house is "The Craft Lodge" (degrees 1–3: self-knowledge and the tools of the work).
 - The lodge as a world is now literal and open: GitHub Discussions are "the Lodge" (the social layer, §4.1).
-- A Lodge is not a **room**. Each degree also has a study room, closed but never secret: a place of conversation that decides nothing (Constitution Art. XV, whitepaper §10.6). The rooms open at the public launch.
+- A Lodge is not a **room**. Each degree also has a study room, closed but never secret: a place of conversation that decides nothing (Constitution Art. XV, whitepaper §10.6). The rooms opened at the public launch.
 - The nesting Lodge → House → Supreme Council fulfills Ostrom's 8th principle (see [[ostrom-principles]]).

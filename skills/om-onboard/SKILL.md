@@ -61,7 +61,7 @@ git clone https://github.com/openmasonry/openmasonry.git && cd openmasonry
 git remote -v            # one remote must point to github.com/openmasonry/openmasonry
 ```
 
-Clone over HTTPS, not SSH: fetching then needs no key. If they cloned their own fork, add the canonical repository: `git remote add upstream https://github.com/openmasonry/openmasonry.git`. If the clone fails with "Repository not found", the repository is not public yet: the door is not open, and nobody can apply. Stop and say so.
+Clone over HTTPS, not SSH: fetching then needs no key. If they cloned their own fork, add the canonical repository: `git remote add upstream https://github.com/openmasonry/openmasonry.git`. If the clone fails with "Repository not found", check the URL: the canonical repository is public at `https://github.com/openmasonry/openmasonry`.
 
 ## 2. GitHub login
 

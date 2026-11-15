@@ -45,7 +45,7 @@ Study is judged by the work alone.
 
 ## Drafts and the rooms
 
-Each degree has a study room, read by the members of that degree and of every higher degree ([rules of the rooms](../governance/ROOMS.md)). The rooms open at the public launch; until they do, drafts are discussed in public. A room is the right place to share a draft for comment, ask about a source, or ask how others approached a masterwork. Three rules shape how it is used for study:
+Each degree has a study room, read by the members of that degree and of every higher degree ([rules of the rooms](../governance/ROOMS.md)). The rooms opened at the public launch. A room is the right place to share a draft for comment, ask about a source, or ask how others approached a masterwork. Three rules shape how it is used for study:
 
 - **Nothing of lasting value lives only in a room.** If an explanation given in a room is worth keeping, its author publishes it. If something can be found only in a room, it is not part of the teaching and no examiner may hold a candidate to it.
 - **No examination is canvassed in a room.** A draft may be discussed; a pending examination, its examiners and its verdict may not. Examiners judge only the published work.
