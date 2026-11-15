@@ -22,6 +22,6 @@ Review Apprentice work, vote on admissions, examine candidates for the 2nd degre
 
 ## Blazon
 
-Field *argent*, ordinary *chevron*, charge *level* (rendered as the degree numeral).
+Field *argent*, ordinary *chevron*, charge *level* on a roundel.
 
 ← [1°](degree-01.md) · [all degrees](README.md) · [3°](degree-03.md) →

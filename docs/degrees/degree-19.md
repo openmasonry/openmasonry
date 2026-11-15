@@ -22,6 +22,6 @@ Approve federation of new Lodges, when lodges exist. Degrees grant *duties and e
 
 ## Blazon
 
-Field *azure*, ordinary *fess*, charge *bridge* (rendered as the degree numeral).
+Field *azure*, ordinary *fess*, charge *bridge* on a roundel.
 
 ← [18°](degree-18.md) · [all degrees](README.md) · [20°](degree-20.md) →

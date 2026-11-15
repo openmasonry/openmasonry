@@ -22,6 +22,6 @@ Operate a witness node, once added by a witness ballot. Degrees grant *duties an
 
 ## Blazon
 
-Field *azure*, ordinary *pale*, charge *quill* (rendered as the degree numeral).
+Field *azure*, ordinary *pale*, charge *quill* on a roundel.
 
 ← [5°](degree-05.md) · [all degrees](README.md) · [7°](degree-07.md) →

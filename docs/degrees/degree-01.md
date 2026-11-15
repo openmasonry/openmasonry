@@ -22,6 +22,6 @@ Speak in the Lodge, open issues, join study circles. Degrees grant *duties and e
 
 ## Blazon
 
-Field *argent*, ordinary *plain*, charge *rough-ashlar* (rendered as the degree numeral).
+Field *argent*, ordinary *plain*, charge *rough-ashlar* on a roundel.
 
 [all degrees](README.md)

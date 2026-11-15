@@ -22,6 +22,6 @@ Review proposed amendments to operational rules for their effect on the commons.
 
 ## Blazon
 
-Field *vert*, ordinary *saltire*, charge *sheaf* (rendered as the degree numeral).
+Field *vert*, ordinary *saltire*, charge *sheaf* on a roundel.
 
 ← [10°](degree-10.md) · [all degrees](README.md) · [12°](degree-12.md) →

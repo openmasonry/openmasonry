@@ -22,6 +22,6 @@ Sponsor candidates; examine candidates for the 2nd and 3rd degrees when drawn by
 
 ## Blazon
 
-Field *azure*, ordinary *chevron*, charge *compass* (rendered as the degree numeral).
+Field *azure*, ordinary *chevron*, charge *compass* on a roundel.
 
 ← [2°](degree-02.md) · [all degrees](README.md) · [4°](degree-04.md) →

@@ -22,6 +22,6 @@ Chair evidence reviews. Degrees grant *duties and eligibility*, never extra vote
 
 ## Blazon
 
-Field *or*, ordinary *plain*, charge *sun* (rendered as the degree numeral).
+Field *or*, ordinary *plain*, charge *sun* on a roundel.
 
 ← [27°](degree-27.md) · [all degrees](README.md) · [29°](degree-29.md) →

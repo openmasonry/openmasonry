@@ -22,6 +22,6 @@ Serve as a teller of sealed ballots, once encrypted ballots exist. Degrees grant
 
 ## Blazon
 
-Field *sable*, ordinary *pale*, charge *key* (rendered as the degree numeral).
+Field *sable*, ordinary *pale*, charge *key* on a roundel.
 
 ← [3°](degree-03.md) · [all degrees](README.md) · [5°](degree-05.md) →

@@ -22,6 +22,6 @@ A three-year, non-renewable seat on the Supreme Council. Degrees grant *duties a
 
 ## Blazon
 
-Field *or*, ordinary *per-saltire*, charge *delta* (rendered as the degree numeral).
+Field *or*, ordinary *per-saltire*, charge *delta* on a roundel.
 
 [all degrees](README.md)

@@ -22,6 +22,6 @@ Grant clemency petitions a hearing. Degrees grant *duties and eligibility*, neve
 
 ## Blazon
 
-Field *argent*, ordinary *chevron*, charge *heart* (rendered as the degree numeral).
+Field *argent*, ordinary *chevron*, charge *heart* on a roundel.
 
 ← [25°](degree-25.md) · [all degrees](README.md) · [27°](degree-27.md) →

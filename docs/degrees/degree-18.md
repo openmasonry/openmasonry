@@ -22,6 +22,6 @@ Preside over a Chapter of the Rose; administer the relief fund, where one exists
 
 ## Blazon
 
-Field *gules*, ordinary *cross*, charge *rose* (rendered as the degree numeral).
+Field *gules*, ordinary *cross*, charge *rose* on a roundel.
 
 ← [17°](degree-17.md) · [all degrees](README.md) · [19°](degree-19.md) →

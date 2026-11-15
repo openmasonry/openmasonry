@@ -22,6 +22,6 @@ Maintain a commons repository. Degrees grant *duties and eligibility*, never ext
 
 ## Blazon
 
-Field *vert*, ordinary *fess*, charge *plumb* (rendered as the degree numeral).
+Field *vert*, ordinary *fess*, charge *plumb* on a roundel.
 
 ← [7°](degree-07.md) · [all degrees](README.md) · [9°](degree-09.md) →

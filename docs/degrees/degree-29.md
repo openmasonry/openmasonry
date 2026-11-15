@@ -22,6 +22,6 @@ Raise an equality objection: refer to the Court of Review any rule that refuses 
 
 ## Blazon
 
-Field *azure*, ordinary *saltire*, charge *saltire-cross* (rendered as the degree numeral).
+Field *azure*, ordinary *saltire*, charge *saltire-cross* on a roundel.
 
 ← [28°](degree-28.md) · [all degrees](README.md) · [30°](degree-30.md) →

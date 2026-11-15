@@ -22,6 +22,6 @@ Stand for House-level office. Degrees grant *duties and eligibility*, never extr
 
 ## Blazon
 
-Field *gules*, ordinary *cross*, charge *cross-potent* (rendered as the degree numeral).
+Field *gules*, ordinary *cross*, charge *cross-potent* on a roundel.
 
 ← [26°](degree-26.md) · [all degrees](README.md) · [28°](degree-28.md) →

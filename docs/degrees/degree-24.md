@@ -22,6 +22,6 @@ Curate the Symbols catalog. Degrees grant *duties and eligibility*, never extra 
 
 ## Blazon
 
-Field *purpure*, ordinary *pale*, charge *triangle* (rendered as the degree numeral).
+Field *purpure*, ordinary *pale*, charge *triangle* on a roundel.
 
 ← [23°](degree-23.md) · [all degrees](README.md) · [25°](degree-25.md) →
