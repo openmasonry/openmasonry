@@ -22,6 +22,6 @@ Review protocol-code amendments before their ballot (advisory). Degrees grant *d
 
 ## Blazon
 
-Field *azure*, ordinary *chevron*, charge *square* (rendered as the degree numeral).
+Field *azure*, ordinary *chevron*, charge *square* on a roundel.
 
 ← [11°](degree-11.md) · [all degrees](README.md) · [13°](degree-13.md) →

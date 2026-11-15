@@ -22,6 +22,6 @@ Sit on the Court of Review. Degrees grant *duties and eligibility*, never extra 
 
 ## Blazon
 
-Field *argent*, ordinary *pale*, charge *eye* (rendered as the degree numeral).
+Field *argent*, ordinary *pale*, charge *eye* on a roundel.
 
 ← [30°](degree-30.md) · [all degrees](README.md) · [32°](degree-32.md) →

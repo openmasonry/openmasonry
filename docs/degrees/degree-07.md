@@ -22,6 +22,6 @@ Sit on dispute juries. Degrees grant *duties and eligibility*, never extra votes
 
 ## Blazon
 
-Field *gules*, ordinary *pale*, charge *balance* (rendered as the degree numeral).
+Field *gules*, ordinary *pale*, charge *balance* on a roundel.
 
 ← [6°](degree-06.md) · [all degrees](README.md) · [8°](degree-08.md) →

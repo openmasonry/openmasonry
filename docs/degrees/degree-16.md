@@ -22,6 +22,6 @@ Convene assemblies. Degrees grant *duties and eligibility*, never extra votes (L
 
 ## Blazon
 
-Field *or*, ordinary *bend*, charge *tower* (rendered as the degree numeral).
+Field *or*, ordinary *bend*, charge *tower* on a roundel.
 
 ← [15°](degree-15.md) · [all degrees](README.md) · [17°](degree-17.md) →

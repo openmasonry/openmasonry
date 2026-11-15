@@ -22,6 +22,6 @@ Become a forum moderator. Degrees grant *duties and eligibility*, never extra vo
 
 ## Blazon
 
-Field *gules*, ordinary *saltire*, charge *star* (rendered as the degree numeral).
+Field *gules*, ordinary *saltire*, charge *star* on a roundel.
 
 ← [9°](degree-09.md) · [all degrees](README.md) · [11°](degree-11.md) →

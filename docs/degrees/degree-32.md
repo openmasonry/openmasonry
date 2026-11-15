@@ -22,6 +22,6 @@ Enter the sortition pool of the Supreme Council after 730 days in the degree. De
 
 ## Blazon
 
-Field *purpure*, ordinary *per-saltire*, charge *double-eagle* (rendered as the degree numeral).
+Field *purpure*, ordinary *per-saltire*, charge *double-eagle* on a roundel.
 
 ← [31°](degree-31.md) · [all degrees](README.md) · [33°](degree-33.md) →

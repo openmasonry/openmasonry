@@ -200,6 +200,15 @@ class Extended(unittest.TestCase):
         xml.dom.minidom.parseString(a)
         for d in canon.degrees().values():
             xml.dom.minidom.parseString(heraldry.degree_arms(d))
+
+    def test_every_degree_has_its_own_arms(self):
+        """The charge tells degrees apart that share a field and an ordinary (2 and 26, 9 and 10, ...)."""
+        import re
+        from openmasonry import heraldry
+        ds = canon.degrees().values()
+        self.assertTrue(all(d.charge in heraldry.CHARGES for d in ds))
+        drawn = {re.sub(r'aria-label="[^"]*"|<title>.*?</title>', "", heraldry.degree_arms(d)) for d in ds}
+        self.assertEqual(len(drawn), 33)
     # 11 CLI end-to-end: append genesis, verify, tamper, clock-since, state --json
     def test_cli_end_to_end(self):
         tmp = fresh(self); led = tmp / "led"; c = Chain(tmp); pub = c.key("hiram")

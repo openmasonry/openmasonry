@@ -22,6 +22,6 @@ Join the incident rota. Degrees grant *duties and eligibility*, never extra vote
 
 ## Blazon
 
-Field *gules*, ordinary *saltire*, charge *lamp* (rendered as the degree numeral).
+Field *gules*, ordinary *saltire*, charge *lamp* on a roundel.
 
 ← [8°](degree-08.md) · [all degrees](README.md) · [10°](degree-10.md) →

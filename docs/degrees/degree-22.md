@@ -22,6 +22,6 @@ Run the contributor-recognition rota. Degrees grant *duties and eligibility*, ne
 
 ## Blazon
 
-Field *vert*, ordinary *pale*, charge *axe* (rendered as the degree numeral).
+Field *vert*, ordinary *pale*, charge *axe* on a roundel.
 
 ← [21°](degree-21.md) · [all degrees](README.md) · [23°](degree-23.md) →

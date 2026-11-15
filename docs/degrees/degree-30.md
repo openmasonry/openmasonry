@@ -22,6 +22,6 @@ Join the Watch (security response team); answer capture alarms. Degrees grant *d
 
 ## Blazon
 
-Field *sable*, ordinary *per-pale*, charge *eagle* (rendered as the degree numeral).
+Field *sable*, ordinary *per-pale*, charge *eagle* on a roundel.
 
 ← [29°](degree-29.md) · [all degrees](README.md) · [31°](degree-31.md) →

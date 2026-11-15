@@ -22,6 +22,6 @@ Operate an official mirror. Degrees grant *duties and eligibility*, never extra 
 
 ## Blazon
 
-Field *vert*, ordinary *bend*, charge *sword* (rendered as the degree numeral).
+Field *vert*, ordinary *bend*, charge *sword* on a roundel.
 
 ← [14°](degree-14.md) · [all degrees](README.md) · [16°](degree-16.md) →

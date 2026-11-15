@@ -22,6 +22,6 @@ Maintain the book of precedents. Degrees grant *duties and eligibility*, never e
 
 ## Blazon
 
-Field *sable*, ordinary *chief*, charge *ark* (rendered as the degree numeral).
+Field *sable*, ordinary *chief*, charge *ark* on a roundel.
 
 ← [20°](degree-20.md) · [all degrees](README.md) · [22°](degree-22.md) →

@@ -22,6 +22,6 @@ Supervise research circles. Degrees grant *duties and eligibility*, never extra 
 
 ## Blazon
 
-Field *or*, ordinary *chief*, charge *arch* (rendered as the degree numeral).
+Field *or*, ordinary *chief*, charge *arch* on a roundel.
 
 ← [12°](degree-12.md) · [all degrees](README.md) · [14°](degree-14.md) →

@@ -22,6 +22,6 @@ Author curricula; train examiners. Degrees grant *duties and eligibility*, never
 
 ## Blazon
 
-Field *azure*, ordinary *chief*, charge *book* (rendered as the degree numeral).
+Field *azure*, ordinary *chief*, charge *book* on a roundel.
 
 ← [19°](degree-19.md) · [all degrees](README.md) · [21°](degree-21.md) →

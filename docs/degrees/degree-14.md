@@ -22,6 +22,6 @@ Preside over a Lodge of Perfection. Degrees grant *duties and eligibility*, neve
 
 ## Blazon
 
-Field *or*, ordinary *cross*, charge *ring* (rendered as the degree numeral).
+Field *or*, ordinary *cross*, charge *ring* on a roundel.
 
 ← [13°](degree-13.md) · [all degrees](README.md) · [15°](degree-15.md) →

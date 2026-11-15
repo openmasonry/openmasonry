@@ -503,7 +503,7 @@ def cmd_docs(a) -> int:
             f"- **Examiners drawn by lot:** {d.examiners}",
             f"- **From admission:** {_from_admission(d.n)}", "",
             "## What it unlocks", "", f"{d.unlocks}. Degrees grant *duties and eligibility*, never extra votes (Landmark IV).", "",
-            "## Blazon", "", f"Field *{d.tincture}*, ordinary *{d.ordinary}*, charge *{d.charge}* (rendered as the degree numeral).", "",
+            "## Blazon", "", f"Field *{d.tincture}*, ordinary *{d.ordinary}*, charge *{d.charge}* on a roundel.", "",
             f"← [{d.n - 1}°](degree-{d.n - 1:02d}.md) · [all degrees](README.md) · [{d.n + 1}°](degree-{d.n + 1:02d}.md) →"
             if 1 < d.n < 33 else "[all degrees](README.md)", ""]), encoding="utf-8")
     (out / "README.md").write_text("\n".join(index) + "\n", encoding="utf-8")

@@ -22,6 +22,6 @@ Curate the History catalog. Degrees grant *duties and eligibility*, never extra 
 
 ## Blazon
 
-Field *sable*, ordinary *fess*, charge *column* (rendered as the degree numeral).
+Field *sable*, ordinary *fess*, charge *column* on a roundel.
 
 ← [4°](degree-04.md) · [all degrees](README.md) · [6°](degree-06.md) →

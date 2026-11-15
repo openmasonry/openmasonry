@@ -22,6 +22,6 @@ Edit the open ritual book. Degrees grant *duties and eligibility*, never extra v
 
 ## Blazon
 
-Field *or*, ordinary *pale*, charge *flame* (rendered as the degree numeral).
+Field *or*, ordinary *pale*, charge *flame* on a roundel.
 
 ← [22°](degree-22.md) · [all degrees](README.md) · [24°](degree-24.md) →

@@ -22,6 +22,6 @@ Serve as wellbeing steward. Degrees grant *duties and eligibility*, never extra 
 
 ## Blazon
 
-Field *vert*, ordinary *chevron*, charge *serpent* (rendered as the degree numeral).
+Field *vert*, ordinary *chevron*, charge *serpent* on a roundel.
 
 ← [24°](degree-24.md) · [all degrees](README.md) · [26°](degree-26.md) →

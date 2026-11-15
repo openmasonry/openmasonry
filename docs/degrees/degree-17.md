@@ -22,6 +22,6 @@ Lead translation and outreach programs. Degrees grant *duties and eligibility*, 
 
 ## Blazon
 
-Field *purpure*, ordinary *bend*, charge *sun-moon* (rendered as the degree numeral).
+Field *purpure*, ordinary *bend*, charge *sun-moon* on a roundel.
 
 ← [16°](degree-16.md) · [all degrees](README.md) · [18°](degree-18.md) →
